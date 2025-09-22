@@ -1,0 +1,53 @@
+{
+    "name": "cascading-cluster-game-service",
+    "version": "1.0.0",
+    "description": "",
+    "main": "./src/app.js",
+    "scripts": {
+        "test": "jest --testPathPattern=tests/unit-tests",
+        "test-coverage": "jest --collect-coverage --testPathPattern=tests/unit-tests",
+        "dev": "set APP_NAME=happyfarm&& nodemon --import=extensionless/register --watch ./src ./src/app.js",
+        "debug": "nodemon --import=extensionless/register --watch ./ --inspect ./src/app.js",
+        "prod": "node --max-old-space-size=8192 --import=extensionless/register ./src/app.js",
+        "reg": "npm set registry http://npm.lumigame.com",
+        "integration-test": "jest --config ./jest.integration-test.config.cjs --testPathPattern=tests/integration-tests/ --ci --reporters=default --reporters=jest-junit --forceExit --runInBand"
+    },
+    "jestSonar": {
+        "reportPath": "reports",
+        "reportFile": "test-reporter.xml",
+        "indent": 4
+    },
+    "author": "pentagon",
+    "license": "ISC",
+    "type": "module",
+    "dependencies": {
+        "lodash.clonedeep": "^4.5.0",
+        "sc-cascading-cluster-base": "1.0.1-beta.1",
+        "sc-trial-mode": "1.0.1",
+        "extensionless": "^1.9.9",
+        "mongoose": "6.13.8"
+    },
+    "overrides": {
+        "mongoose": "6.13.8",
+        "mongoose-long": "0.8.0"
+    },
+    "devDependencies": {
+        "@babel/preset-env": "7.24.4",
+        "@commitlint/cli": "19.8.1",
+        "@commitlint/config-conventional": "19.8.1",
+        "babel-jest": "29.7.0",
+        "babel-plugin-rewire": "1.2.0",
+        "husky": "9.1.7",
+        "install": "0.13.0",
+        "jest": "^29.0.0",
+        "jest-auto-fixture": "^1.0.6",
+        "jest-extended": "^4.0.2",
+        "jest-micro-auto-stub": "1.0.9",
+        "jest-sonar-reporter": "2.0.0",
+        "jest-when": "3.6.0",
+        "jest-html-reporters": "^3.1.1",
+        "jest-junit": "13.2.0",
+        "nodemon": "2.0.22",
+        "sc-game-service-integration-utils": "2.3.0"
+    }
+}

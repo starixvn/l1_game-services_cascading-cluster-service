@@ -1,0 +1,19 @@
+module.exports = async () => {
+    return {
+        rootDir: "./",
+        verbose: true,
+        transform: {
+            "^.+\\.js?$": "babel-jest",
+        },
+        transformIgnorePatterns: [
+            "node_modules/(?!(sc-base-database|sc-common|sc-game-base|sc-base-apis|sc-api-client|sc-slot-game-base|sc-cascading-cluster-base|sc-game-service-integration-utils|axios|nanoid|crypto-random-string|sc-game-management-client)/)",
+        ],
+        testEnvironment: "node",
+        testResultsProcessor: "jest-junit",
+        setupFilesAfterEnv: ["jest-extended"],
+        globalSetup: "<rootDir>/tests/integration-tests/global-setup.cjs",
+        globalTeardown: "<rootDir>/tests/integration-tests/global-teardown.cjs",
+        testTimeout: 120000,
+        testSequencer: "./testSequencer.cjs",
+    };
+};
