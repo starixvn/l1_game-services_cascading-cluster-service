@@ -1,5 +1,5 @@
 // import { logger } from "sc-common";
-import GameManagementApiClientFactory, { getOrDefault } from "sc-game-base/src/core/game-management-api/index.js";
+import GameManagementApiClientFactory, { getOrDefault } from "sc-game-base/src/core/game-management-api";
 import { SlotGameData, SlotGameDefinition } from "sc-slot-game-base";
 import appConfigs from "./app-configs";
 import CascadingSlotContainerRegistry from "./cascading-slot-container-registry";
@@ -26,7 +26,7 @@ const run = async (): Promise<void> => {
 
         if (gameConfigs) {
             gameSettings.id = gameConfigs.gameId.toString();
-            gameSettings.name = gameConfigs.displayName.replace(/ /g, "");
+            gameSettings.name = gameConfigs.name.replace(/ /g, "");
 
             const gameData = new SlotGameData(gameSettings.durations.wholeRound);
             gameData.gameConfigs = gameConfigs;

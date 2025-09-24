@@ -1,53 +1,25 @@
 {
-  "compilerOptions": {
-    "target": "ES2022",
-    "module": "ESNext",
-    "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "allowJs": true,
-    "checkJs": false,
-    "outDir": "./dist",
-    "rootDir": "./src",
-    "strict": true,
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "strictFunctionTypes": true,
-    "noImplicitThis": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "moduleDetection": "force",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "verbatimModuleSyntax": false,
-    "declaration": true,
-    "declarationMap": true,
-    "sourceMap": true,
-    "removeComments": false,
-    "noEmitOnError": true,
-    "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": true,
-    "types": ["node", "jest"],
-    "baseUrl": ".",
-    "paths": {
-      "*": ["node_modules/*", "src/types/*"]
-    }
-  },
-  "include": [
-    "src/**/*",
-    "src/types/**/*.d.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "coverage",
-    "tests",
-    "client"
-  ],
-  "ts-node": {
-    "transpileOnly": true,
     "compilerOptions": {
-      "module": "CommonJS"
-    }
-  }
+        "target": "ES2022",
+        "module": "ESNext",
+        "moduleResolution": "node",
+        "allowJs": true,
+        "declaration": true,
+        "declarationMap": true,
+        "emitDeclarationOnly": false,
+        "outDir": "./dist",
+        "rootDir": "./src",
+        "strict": false,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "forceConsistentCasingInFileNames": true,
+        "skipLibCheck": true,
+        "resolveJsonModule": true,
+        "typeRoots": ["./node_modules/@types", "./types"],
+        "noImplicitAny": false,
+        "noImplicitReturns": false,
+        "noImplicitThis": false
+    },
+    "include": ["src/**/*"],
+    "exclude": ["node_modules", "**/*.test.js", "**/__tests__/**/*", "coverage", "types", "dist", "test-types.ts", "**/*.test-data.js"],
 }
