@@ -1,0 +1,1 @@
+{"version":3,"file":"trial-mode-round-calculator.js","sourceRoot":"","sources":["../../src/trial-mode/trial-mode-round-calculator.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,eAAe,EAAE,MAAM,sCAAsC,CAAC;AAOvE,MAAM,CAAC,OAAO,OAAO,wBAAyB,SAAQ,eAAe;IACjE,YAAY,EAAE,uBAAuB,EAAE,gBAAgB,EAAiC;QACpF,KAAK,CAAC,EAAE,cAAc,EAAE,uBAAuB,EAAE,gBAAgB,EAAE,CAAC,CAAC;IACzE,CAAC;CACJ"}

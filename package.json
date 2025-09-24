@@ -2,13 +2,18 @@
     "name": "cascading-cluster-game-service",
     "version": "1.0.0",
     "description": "",
-    "main": "./src/app.js",
+    "main": "./dist/app.js",
     "scripts": {
+        "build": "tsc",
+        "build:watch": "tsc --watch",
         "test": "jest --testPathPattern=tests/unit-tests",
         "test-coverage": "jest --collect-coverage --testPathPattern=tests/unit-tests",
-        "dev": "set APP_NAME=happyfarm&& nodemon --import=extensionless/register --watch ./src ./src/app.js",
-        "debug": "nodemon --import=extensionless/register --watch ./ --inspect ./src/app.js",
-        "prod": "node --max-old-space-size=8192 --import=extensionless/register ./src/app.js",
+        "dev": "set APP_NAME=happyfarm&& tsx src/app.ts",
+        "dev:watch": "set APP_NAME=happyfarm&& nodemon --exec \"tsx src/app.ts\" --watch ./src",
+        "dev:build": "set APP_NAME=happyfarm&& npm run build && node --import=extensionless/register ./dist/app.js",
+        "debug": "nodemon --exec \"node --loader ts-node/esm --inspect\" --watch ./ ./src/app.ts",
+        "prod": "node --max-old-space-size=8192 --import=extensionless/register ./dist/app.js",
+        "prod:ts": "npm run build && npm run prod",
         "reg": "npm set registry http://npm.lumigame.com",
         "integration-test": "jest --config ./jest.integration-test.config.cjs --testPathPattern=tests/integration-tests/ --ci --reporters=default --reporters=jest-junit --forceExit --runInBand"
     },
@@ -22,7 +27,7 @@
     "type": "module",
     "dependencies": {
         "lodash.clonedeep": "^4.5.0",
-        "sc-cascading-cluster-base": "1.0.1-beta.1",
+        "sc-cascading-cluster-base": "1.0.1-beta.4",
         "sc-trial-mode": "1.0.1",
         "extensionless": "^1.9.9",
         "mongoose": "6.13.8"
@@ -35,6 +40,9 @@
         "@babel/preset-env": "7.24.4",
         "@commitlint/cli": "19.8.1",
         "@commitlint/config-conventional": "19.8.1",
+        "@types/jest": "^29.5.5",
+        "@types/lodash.clonedeep": "^4.5.7",
+        "@types/node": "^20.8.0",
         "babel-jest": "29.7.0",
         "babel-plugin-rewire": "1.2.0",
         "husky": "9.1.7",
@@ -48,6 +56,11 @@
         "jest-html-reporters": "^3.1.1",
         "jest-junit": "13.2.0",
         "nodemon": "2.0.22",
-        "sc-game-service-integration-utils": "2.3.0"
+        "sc-game-service-integration-utils": "2.3.0",
+        "semantic-release": "^19.0.5",
+        "ts-jest": "^29.1.1",
+        "ts-node": "^10.9.1",
+        "tsx": "^4.6.0",
+        "typescript": "^5.9.2"
     }
 }

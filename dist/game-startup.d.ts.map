@@ -1,0 +1,1 @@
+{"version":3,"file":"game-startup.d.ts","sourceRoot":"","sources":["../src/game-startup.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,IAAI,EAAE,MAAM,cAAc,CAAC;AAGpC,MAAM,CAAC,OAAO,OAAO,WAAY,SAAQ,IAAI,CAAC,WAAW;IACrD,OAAO,CAAC,sBAAsB,CAAM;gBAExB,SAAS,EAAE,GAAG;IAKpB,KAAK,CAAC,GAAG,EAAE,GAAG,EAAE,YAAY,EAAE,GAAG,GAAG,OAAO,CAAC,IAAI,CAAC;CAuB1D"}

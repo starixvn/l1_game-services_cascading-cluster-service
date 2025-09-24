@@ -1,0 +1,1 @@
+{"version":3,"file":"freespins.js","sourceRoot":"","sources":["../../src/models/freespins.ts"],"names":[],"mappings":"AAAA,OAAO,QAAQ,MAAM,UAAU,CAAC;AAChC,OAAO,EAAE,cAAc,EAAE,MAAM,uCAAuC,CAAC;AAEvE,MAAM,CAAC,OAAO,WAAW,cAAsB;IAC3C,OAAO,QAAQ,CAAC,KAAK,CAAC,GAAG,cAAc,WAAW,EAAE,cAAc,CAAC,CAAC;AACxE,CAAC"}

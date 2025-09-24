@@ -1,0 +1,1 @@
+{"version":3,"file":"game-settings.js","sourceRoot":"","sources":["../src/game-settings.ts"],"names":[],"mappings":"AACA,OAAO,UAAU,MAAM,eAAe,CAAC;AAEvC,MAAM,YAAY,GAAiB;IAC/B,SAAS,EAAE;QACP,UAAU,EAAE,EAAE;QACd,UAAU,EAAE,CAAC;KAChB;IACD,mBAAmB,EAAE,UAAU,CAAC,mBAAmB;IACnD,gBAAgB,EAAE,UAAU,CAAC,gBAAgB;CAChD,CAAC;AAEF,eAAe,YAAY,CAAC"}

@@ -1,0 +1,1 @@
+{"version":3,"file":"trial-mode-board-generator.d.ts","sourceRoot":"","sources":["../../src/trial-mode/trial-mode-board-generator.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,uBAAuB,EAAE,MAAM,sCAAsC,CAAC;AAE/E,eAAO,MAAM,sBAAsB;;;;;;CAMlC,CAAC;AAEF,MAAM,CAAC,OAAO,OAAO,uBAAwB,SAAQ,uBAAuB;gBAC5D,UAAU,EAAE,GAAG,EAAE,QAAQ,EAAE,GAAG,EAAE,aAAa,EAAE,GAAG,EAAE,UAAU,EAAE,GAAG;CAGlF"}

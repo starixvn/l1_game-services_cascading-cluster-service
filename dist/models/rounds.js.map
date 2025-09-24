@@ -1,0 +1,1 @@
+{"version":3,"file":"rounds.js","sourceRoot":"","sources":["../../src/models/rounds.ts"],"names":[],"mappings":"AAAA,OAAO,QAAQ,MAAM,UAAU,CAAC;AAChC,OAAO,EAAE,YAAY,EAAE,MAAM,uCAAuC,CAAC;AAErE,MAAM,CAAC,OAAO,WAAW,cAAsB;IAC3C,OAAO,QAAQ,CAAC,KAAK,CAAC,GAAG,cAAc,QAAQ,EAAE,YAAY,CAAC,CAAC;AACnE,CAAC"}
