@@ -30,6 +30,7 @@ export default class GameStartup extends Core.BaseStartup {
             await this.gameCron.start();
             this.processBetQueue.start();
         } catch (error) {
+            console.log(error);
             // logger.logError(error);
         }
     }

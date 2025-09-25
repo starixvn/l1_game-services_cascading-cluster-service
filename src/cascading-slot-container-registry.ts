@@ -13,10 +13,32 @@ export default class CascadingSlotContainerRegistry extends BaseRegistry {
     }
 
     registerTrialMode(): void {
+        // Mock classes to disable trial mode
+        const mockTrialModeRoundCalculator = {
+            calculate: () => ({}),
+            processRound: () => ({}),
+            getResults: () => ({}),
+            reset: () => {}
+        };
+
+        const mockTrialModeBoardGenerator = {
+            initialize: () => {},
+            generate: () => (console.log("generate")),
+            createBoard: () => ({}),
+            reset: () => {}
+        };
+
+        const mockCascadingSlotTrialMode = {
+            init: () => {},
+            registerSocketEvent: () => {},
+            start: () => {},
+            stop: () => {}
+        };
+
         this.container.register({
-            trialModeRoundCalculator: asClass(TrialModeRoundCalculator).proxy(),
-            trialModeBoardGenerator: asClass(TrialModeBoardGenerator).singleton(),
-            cascadingSlotTrialMode: asClass(CascadingSlotTrialMode).singleton(),
+            trialModeRoundCalculator: asValue(mockTrialModeRoundCalculator),
+            trialModeBoardGenerator: asValue(mockTrialModeBoardGenerator),
+            cascadingSlotTrialMode: asValue(mockCascadingSlotTrialMode),
         });
     }
 
