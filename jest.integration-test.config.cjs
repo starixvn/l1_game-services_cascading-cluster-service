@@ -2,8 +2,10 @@ module.exports = async () => {
     return {
         rootDir: "./",
         verbose: true,
+        preset: "ts-jest",
         transform: {
             "^.+\\.js?$": "babel-jest",
+            "^.+\\.ts?$": "ts-jest",
         },
         transformIgnorePatterns: [
             "node_modules/(?!(sc-base-database|sc-common|sc-game-base|sc-base-apis|sc-api-client|sc-slot-game-base|sc-cascading-cluster-base|sc-game-service-integration-utils|axios|nanoid|crypto-random-string|sc-game-management-client)/)",
@@ -13,7 +15,7 @@ module.exports = async () => {
         setupFilesAfterEnv: ["jest-extended"],
         globalSetup: "<rootDir>/tests/integration-tests/global-setup.cjs",
         globalTeardown: "<rootDir>/tests/integration-tests/global-teardown.cjs",
-        testTimeout: 120000,
+        testTimeout: 60000,
         testSequencer: "./testSequencer.cjs",
     };
 };

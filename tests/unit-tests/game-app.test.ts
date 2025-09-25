@@ -1,4 +1,4 @@
-import { createContainer } from "awilix";
+import { createContainer, AwilixContainer } from "awilix";
 import GameApp from "../../src/game-app";
 import { Core } from "sc-game-base";
 
@@ -10,10 +10,10 @@ describe("gameApp", () => {
     const baseMetrics = {};
     const container = createContainer();
 
-    let gameApp;
+    let gameApp: GameApp;
 
     beforeEach(() => {
-        gameApp = new GameApp(serviceName, appConfigs, baseMetrics);
+        gameApp = new GameApp(serviceName, appConfigs as any);
     });
 
     it("should be instance of Core.BaseGameApp", () => {

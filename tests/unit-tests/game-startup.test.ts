@@ -11,25 +11,25 @@ describe("GameStartup", () => {
     const cascadingSlotTrialMode = stub(CascadingSlotTrialMode);
     const gameConfigsRepository = stubMongoose(mongoose.Model);
     const definition = { name: "treasureisland" };
-    const app = {};
+    const app = {} as any;
     const gameCron = { start: jest.fn() };
     const processBetQueue = { start: jest.fn() };
     const socketServer = {
         of: jest.fn().mockReturnValue({ on: jest.fn() }),
-    };
+    } as any;
 
-    let gameStartup;
+    let gameStartup: GameStartup;
 
     beforeEach(() => {
-        container.resolve = jest.fn();
+        (container.resolve as any) = jest.fn();
 
-        container.resolve.mockReturnValue({});
+        (container.resolve as any).mockReturnValue({});
 
-        when(container.resolve).calledWith("definition").mockReturnValue(definition);
-        when(container.resolve).calledWith("gameCron").mockReturnValue(gameCron);
-        when(container.resolve).calledWith("processBetQueue").mockReturnValue(processBetQueue);
-        when(container.resolve).calledWith("cascadingSlotTrialMode").mockReturnValue(cascadingSlotTrialMode);
-        when(container.resolve).calledWith("gameConfigsRepository").mockReturnValue(gameConfigsRepository);
+        when(container.resolve as any).calledWith("definition").mockReturnValue(definition);
+        when(container.resolve as any).calledWith("gameCron").mockReturnValue(gameCron);
+        when(container.resolve as any).calledWith("processBetQueue").mockReturnValue(processBetQueue);
+        when(container.resolve as any).calledWith("cascadingSlotTrialMode").mockReturnValue(cascadingSlotTrialMode);
+        when(container.resolve as any).calledWith("gameConfigsRepository").mockReturnValue(gameConfigsRepository);
 
         gameStartup = new GameStartup(container);
     });

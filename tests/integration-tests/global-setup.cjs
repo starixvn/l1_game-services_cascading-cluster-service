@@ -1,7 +1,7 @@
 const { spawn } = require("child_process");
 
 const startSetupDataProcess = (onSetupDone) => {
-    const setupDataProcess = spawn("node", ["--es-module-specifier-resolution=node", "./tests/integration-tests/stubs/test-data-setup.js"]);
+    const setupDataProcess = spawn("cmd", ["/c", "npx", "tsx", "./tests/integration-tests/stubs/test-data-setup.ts"]);
 
     setupDataProcess.stdout.on("data", (data) => {
         console.log(`stdout: ${data}`);
@@ -20,13 +20,14 @@ const startSetupDataProcess = (onSetupDone) => {
 };
 
 const startServiceProcess = (onServiceStarted) => {
-    const serviceProcess = spawn("node", [
-        "--es-module-specifier-resolution=node",
-        "./tests/integration-tests/game-service-setup/game-service-app.js",
-        {
-            stdio: ["pipe", "pipe", "pipe", "ipc"],
-        },
-    ]);
+    const serviceProcess = spawn("cmd", [
+        "/c", 
+        "npx",
+        "tsx",
+        "./tests/integration-tests/game-service-setup/game-service-app.ts"
+    ], {
+        stdio: ["pipe", "pipe", "pipe", "ipc"]
+    });
 
     serviceProcess.stdout.on("data", (data) => {
         console.log(`stdout: ${data}`);

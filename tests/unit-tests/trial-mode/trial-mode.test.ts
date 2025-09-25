@@ -5,7 +5,7 @@ import { logger } from "sc-common";
 jest.mock("sc-trial-mode");
 
 describe("trialMode", () => {
-    let cascadingSlotTrialMode;
+    let cascadingSlotTrialMode: CascadingSlotTrialMode;
 
     const trialModeRoundCalculator = stub(TrialModeRoundCalculator);
     const logService = stub(logger);
@@ -17,26 +17,26 @@ describe("trialMode", () => {
     describe("init", () => {
         it("should call trialMode.init", () => {
             // Arrange
-            const config = {};
+            const config = {} as any;
 
             // Act
             cascadingSlotTrialMode.init(config);
 
             // Assert
-            expect(cascadingSlotTrialMode.trialMode.init).toBeCalledWith(config);
+            expect((cascadingSlotTrialMode as any).trialMode.init).toBeCalledWith(config);
         });
     });
 
     describe("registerSocketEvent", () => {
         it("should call trialMode.registerSocketEvent", () => {
             // Arrange
-            const socketClient = {};
+            const socketClient = {} as any;
 
             // Act
             cascadingSlotTrialMode.registerSocketEvent(socketClient);
 
             // Assert
-            expect(cascadingSlotTrialMode.trialMode.registerSocketHandler).toBeCalledWith(socketClient);
+            expect((cascadingSlotTrialMode as any).trialMode.registerSocketHandler).toBeCalledWith(socketClient);
         });
     });
 });

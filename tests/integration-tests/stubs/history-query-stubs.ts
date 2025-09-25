@@ -1,3 +1,4 @@
+// @ts-ignore
 import { createDummyUser } from "sc-game-service-integration-utils";
 
 export const queryHistoryUser = { playerId: 3, playerName: "QueryHistoryUser", UID: "" };
@@ -22,8 +23,8 @@ export const playerMultipliers = {
 export const stubHistoryData = async (currency, TreasureIslandRounds, TreasureIslandTotalMultipliers) => {
     const { userInfo, userSession } = await createDummyUser(queryHistoryUser.playerId, queryHistoryUser.playerName, currency);
 
-    queryHistoryUser.UID = userSession.userId;
-    playerMultipliers.name = userSession.playerName;
+    queryHistoryUser.UID = userSession.userId as string;
+    (playerMultipliers as any).name = userSession.playerName;
 
     const historyRounds = [
         {

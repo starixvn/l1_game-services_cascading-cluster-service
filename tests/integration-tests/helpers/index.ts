@@ -1,6 +1,6 @@
 import { currencyData } from "../stubs/test-data";
 
-export function initUserSession(user) {
+export function initUserSession(user: any) {
     return {
         session: `${user.playerId}-session-id`,
         ss: `${user.playerId}-session-id`,

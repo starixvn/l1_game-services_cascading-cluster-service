@@ -1,10 +1,11 @@
+// @ts-ignore
 import { GameClientDriver } from "sc-game-service-integration-utils";
 import { initUserSession } from "./helpers";
 import { queryHistoryUser } from "./stubs/history-query-stubs";
 import { socketOptions } from "./stubs/test-data";
 
 describe("event get history", () => {
-    let userClientDriver;
+    let userClientDriver: GameClientDriver;
     afterAll(() => {
         userClientDriver.close();
     });
@@ -16,7 +17,7 @@ describe("event get history", () => {
     describe("when page = 0", () => {
         it("should return empty details", async () => {
             // Arrange
-            const expectedValue = {};
+            const expectedValue = {} as any;
 
             // Act
             userClientDriver.sendGetHistoryEvent(0);
@@ -36,12 +37,11 @@ describe("event get history", () => {
                     betLogs: [
                         {
                             betLevel: 1,
-                            betwin: 0,
+                            betWin: 0,
                             coinValue: 1,
                             currency: "$US",
                             freeSpin: true,
                             id: 6,
-                            multiplier: 0,
                             reachMaxWin: false,
                             time: "2022-06-03T07:32:21.142Z",
                             settlementResult: {
@@ -59,18 +59,14 @@ describe("event get history", () => {
                                 ],
                             },
                             totalAmount: 20,
-                            totalMultiplier: 0,
-
-                            totalTumbleWin: 0,
                         },
                         {
                             betLevel: 1,
-                            betwin: 0,
+                            betWin: 0,
                             coinValue: 1,
                             currency: "$US",
                             freeSpin: false,
                             id: 5,
-                            multiplier: 0,
                             reachMaxWin: false,
                             time: "2022-06-03T07:32:21.142Z",
                             settlementResult: {
@@ -88,9 +84,6 @@ describe("event get history", () => {
                                 ],
                             },
                             totalAmount: 20,
-                            totalMultiplier: 0,
-
-                            totalTumbleWin: 0,
                         },
                     ],
                     page: 1,

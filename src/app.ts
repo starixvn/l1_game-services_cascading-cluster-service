@@ -1,4 +1,4 @@
-// import { logger } from "sc-common";
+import { logger } from "sc-common";
 import GameManagementApiClientFactory, { getOrDefault } from "sc-game-base/src/core/game-management-api";
 import { SlotGameData, SlotGameDefinition } from "sc-slot-game-base";
 import appConfigs from "./app-configs";
@@ -36,7 +36,7 @@ const run = async (): Promise<void> => {
 
             await app.startGame(container);
         } else {
-            // logger.logCritical(`${gameName} config doesn't exist`);
+            logger.logCritical(`${gameName} config doesn't exist`);
         }
     } else {
         console.log("App Name is not defined, failed to boostrap the service");

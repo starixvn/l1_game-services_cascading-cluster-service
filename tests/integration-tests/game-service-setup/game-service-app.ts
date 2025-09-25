@@ -1,5 +1,6 @@
 import nock from "nock";
 import { gameConfigs as gameConfigsRepository, userInfos as userInfoRepository } from "sc-base-database";
+// @ts-ignore
 import { initAPIStub, stubUserService, subGameManagementService } from "sc-game-service-integration-utils";
 import { endGameErrorUser, errorUser, internalServerErrorUser, normalUser } from "sc-game-service-integration-utils/src/stubs/user-stub";
 import { SlotGameData, SlotGameDefinition } from "sc-slot-game-base";
@@ -20,9 +21,9 @@ export const run = async (gameName) => {
     const gameConfigs = await gameConfigsRepository.findOne({ name: gameName.toLowerCase() }).lean().exec();
 
     if (gameConfigs) {
-        gameSettings.id = gameConfigs.gameId;
-        gameSettings.name = gameConfigs.displayName.replace(/ /g, "");
-        const definition = new SlotGameDefinition(gameSettings);
+        gameSettings.id = String(gameConfigs.gameId);
+        gameSettings.name = gameConfigs.displayName?.replace(/ /g, "") as string;
+        const definition = new SlotGameDefinition(gameSettings as any);
 
         await subGameManagementService(appConfigs, definition);
         const userInfos = await userInfoRepository

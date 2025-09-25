@@ -1,11 +1,16 @@
 import mongoose from "mongoose";
 import { middlewares } from "sc-common";
 import {
+// @ts-ignore
     createDummyCurrency,
     createDummyUsers,
+// @ts-ignore
     createExchangeRate,
+// @ts-ignore
     createGameConfig,
+// @ts-ignore
     createPartnerConfig,
+// @ts-ignore
 } from "sc-game-service-integration-utils";
 import { createCurrencyGroupGames } from "./currency-group-games-stub";
 import { stubHistoryData } from "./history-query-stubs";
@@ -29,7 +34,7 @@ const clearAllData = async () => {
     const collections = await mongoose.connection.db.collections();
 
     for (const collection of collections) {
-        await collection.deleteMany();
+        await collection.deleteMany({});
     }
 };
 

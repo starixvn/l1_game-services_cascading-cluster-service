@@ -6,7 +6,7 @@ jest.mock(
     "awilix",
     () => {
         return {
-            asValue: jest.fn((t) => t),
+            asValue: jest.fn((t: any) => t),
             asClass: () => ({ singleton: () => ({ proxy: () => {} }) }),
             InjectionMode: jest.fn(() => {}),
             createContainer: jest.fn(() => {}),
@@ -22,9 +22,9 @@ describe("service-container-registry", () => {
     describe("extends", () => {
         it("inherit Slot.SlotContainerRegistry", () => {
             // arrange
-            const serviceContainerRegistry = new CascadingSlotContainerRegistry(defaultInjectionMode);
+            const serviceContainerRegistry = new CascadingSlotContainerRegistry(defaultInjectionMode as any);
 
-            //assert
+            // assert
             expect(serviceContainerRegistry instanceof Slot.SlotContainerRegistry);
         });
     });
@@ -32,13 +32,13 @@ describe("service-container-registry", () => {
     describe("registerModels", () => {
         it("should register correct Model", () => {
             // arrange
-            const serviceContainerRegistry = new CascadingSlotContainerRegistry(defaultInjectionMode);
-            serviceContainerRegistry.container = { register: jest.fn() };
+            const serviceContainerRegistry = new CascadingSlotContainerRegistry(defaultInjectionMode as any);
+            serviceContainerRegistry.container = { register: jest.fn() } as any;
 
             // act
             serviceContainerRegistry.registerModels();
 
-            //assert
+            // assert
             expect(serviceContainerRegistry.container.register).toBeCalledWith({
                 roundsRepository: expect.any(Function),
                 famesRepository: expect.any(Function),
@@ -50,13 +50,13 @@ describe("service-container-registry", () => {
     describe("registerValidators", () => {
         it("should register correct validators", () => {
             // arrange
-            const serviceContainerRegistry = new CascadingSlotContainerRegistry(defaultInjectionMode);
-            serviceContainerRegistry.container = { register: jest.fn() };
+            const serviceContainerRegistry = new CascadingSlotContainerRegistry(defaultInjectionMode as any);
+            serviceContainerRegistry.container = { register: jest.fn() } as any;
 
             // act
             serviceContainerRegistry.registerValidators();
 
-            //assert
+            // assert
             expect(serviceContainerRegistry.container.register).toBeCalledWith({
                 playGamePermissionValidator: expect.any(Object),
             });
