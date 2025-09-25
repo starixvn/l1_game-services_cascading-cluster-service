@@ -9,7 +9,7 @@ import GameApp from "../../../src/game-app";
 import gameSettings from "../../../src/game-settings";
 import { queryHistoryUser } from "../stubs/history-query-stubs";
 import { haveTotalMultiplierUser, placeBetUser } from "../stubs/user-stub";
-import IGTSlotGameContainerRegistry from "./igt-container-registry";
+import IGTContainerRegistry from "./igt-container-registry";
 export const run = async (gameName) => {
     initAPIStub(appConfigs.apiSettings.apiUrl);
     stubUserService(appConfigs, [placeBetUser, haveTotalMultiplierUser, normalUser, errorUser, internalServerErrorUser, endGameErrorUser]);
@@ -31,7 +31,7 @@ export const run = async (gameName) => {
         userInfos.map((userInfo) => stubUserInfo(userInfo, appConfigs));
         const gameData = new SlotGameData(gameSettings.durations.wholeRound);
         gameData.gameConfigs = gameConfigs;
-        const container = new IGTSlotGameContainerRegistry().register(appConfigs, definition, gameData);
+        const container = new IGTContainerRegistry().register(appConfigs, definition, gameData);
         await app.startGame(container);
     }
 };

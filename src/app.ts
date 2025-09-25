@@ -22,7 +22,7 @@ const run = async (): Promise<void> => {
         const gameConfigs = await getOrDefault(
             new GameManagementApiClientFactory(appConfigs).instance().gameConfigs.getGameConfigs(gameName),
             null
-        ) as GameConfigs | null;
+        );
 
         if (gameConfigs) {
             gameSettings.id = gameConfigs.gameId.toString();

@@ -1,4 +1,4 @@
-// import { logger } from "sc-common";
+import { logger } from "sc-common";
 import { Core } from "sc-game-base";
 import type { SocketClient } from "./types/index";
 
@@ -25,7 +25,7 @@ export default class GameStartup extends Core.BaseStartup {
             this.processBetQueue.start();
         } catch (error) {
             console.log(error);
-            // logger.logError(error);
+            logger.logError(error);
         }
     }
 }

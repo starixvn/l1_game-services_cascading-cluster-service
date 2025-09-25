@@ -1,4 +1,4 @@
-// import { logger } from "sc-common";
+import { logger } from "sc-common";
 import { Core } from "sc-game-base";
 export default class GameStartup extends Core.BaseStartup {
     cascadingSlotTrialMode;
@@ -23,7 +23,7 @@ export default class GameStartup extends Core.BaseStartup {
             this.processBetQueue.start();
         }
         catch (error) {
-            // logger.logError(error);
+            logger.logError(error);
         }
     }
 }

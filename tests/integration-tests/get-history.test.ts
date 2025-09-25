@@ -32,6 +32,7 @@ describe("event get history", () => {
     describe("when page > 0 and real player", () => {
         it("should return details", async () => {
             // Arrange
+            const SAMPLE_BOARD_DATA = "1,0,1,2,4,8,1,6,4,4,3,1,1,4,6,6,4,2,7,2,0,6,0,5,3,3,0,6,1,0";
             const expectedValue = {
                 history: {
                     betLogs: [
@@ -52,8 +53,8 @@ describe("event get history", () => {
                                 tumbles: [
                                     {
                                         multipliers: [],
-                                        newBoard: "1,0,1,2,4,8,1,6,4,4,3,1,1,4,6,6,4,2,7,2,0,6,0,5,3,3,0,6,1,0",
-                                        originalBoard: "1,0,1,2,4,8,1,6,4,4,3,1,1,4,6,6,4,2,7,2,0,6,0,5,3,3,0,6,1,0",
+                                        newBoard: SAMPLE_BOARD_DATA,
+                                        originalBoard: SAMPLE_BOARD_DATA,
                                         win: 0,
                                     },
                                 ],
@@ -77,8 +78,8 @@ describe("event get history", () => {
                                 tumbles: [
                                     {
                                         multipliers: [],
-                                        newBoard: "1,0,1,2,4,8,1,6,4,4,3,1,1,4,6,6,4,2,7,2,0,6,0,5,3,3,0,6,1,0",
-                                        originalBoard: "1,0,1,2,4,8,1,6,4,4,3,1,1,4,6,6,4,2,7,2,0,6,0,5,3,3,0,6,1,0",
+                                        newBoard: SAMPLE_BOARD_DATA,
+                                        originalBoard: SAMPLE_BOARD_DATA,
                                         win: 0,
                                     },
                                 ],

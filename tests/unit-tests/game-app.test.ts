@@ -1,4 +1,4 @@
-import { createContainer, AwilixContainer } from "awilix";
+import { createContainer } from "awilix";
 import GameApp from "../../src/game-app";
 import { Core } from "sc-game-base";
 
@@ -7,7 +7,6 @@ jest.mock("../../src/game-startup");
 describe("gameApp", () => {
     const appConfigs = {};
     const serviceName = "TreasureIsland";
-    const baseMetrics = {};
     const container = createContainer();
 
     let gameApp: GameApp;

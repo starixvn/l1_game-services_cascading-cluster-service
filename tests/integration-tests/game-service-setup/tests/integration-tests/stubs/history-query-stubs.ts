@@ -20,6 +20,7 @@ export const stubHistoryData = async (currency, TreasureIslandRounds, TreasureIs
     const { userInfo, userSession } = await createDummyUser(queryHistoryUser.playerId, queryHistoryUser.playerName, currency);
     queryHistoryUser.UID = userSession.userId as string;
     (playerMultipliers as any).name = userSession.playerName;
+    const SAMPLE_BOARD_DATA = "1,0,1,2,4,8,1,6,4,4,3,1,1,4,6,6,4,2,7,2,0,6,0,5,3,3,0,6,1,0";
     const historyRounds = [
         {
             coinValue: 1,
@@ -101,12 +102,12 @@ export const stubHistoryData = async (currency, TreasureIslandRounds, TreasureIs
             playerId: userSession.playerId,
             __v: 0,
             endTime: "2022-06-03T07:32:21.150+00:00",
-            result: "1,0,1,2,4,8,1,6,4,4,3,1,1,4,6,6,4,2,7,2,0,6,0,5,3,3,0,6,1,0",
+            result: SAMPLE_BOARD_DATA,
             settlementResult: {
                 tumbles: [
                     {
-                        originalBoard: "1,0,1,2,4,8,1,6,4,4,3,1,1,4,6,6,4,2,7,2,0,6,0,5,3,3,0,6,1,0",
-                        newBoard: "1,0,1,2,4,8,1,6,4,4,3,1,1,4,6,6,4,2,7,2,0,6,0,5,3,3,0,6,1,0",
+                        originalBoard: SAMPLE_BOARD_DATA,
+                        newBoard: SAMPLE_BOARD_DATA,
                         multipliers: [],
                         icons: {},
                         win: 0,
@@ -195,12 +196,12 @@ export const stubHistoryData = async (currency, TreasureIslandRounds, TreasureIs
             playerId: userSession.playerId,
             __v: 0,
             endTime: "2022-06-03T07:32:21.150+00:00",
-            result: "1,0,1,2,4,8,1,6,4,4,3,1,1,4,6,6,4,2,7,2,0,6,0,5,3,3,0,6,1,0",
+            result: SAMPLE_BOARD_DATA,
             settlementResult: {
                 tumbles: [
                     {
-                        originalBoard: "1,0,1,2,4,8,1,6,4,4,3,1,1,4,6,6,4,2,7,2,0,6,0,5,3,3,0,6,1,0",
-                        newBoard: "1,0,1,2,4,8,1,6,4,4,3,1,1,4,6,6,4,2,7,2,0,6,0,5,3,3,0,6,1,0",
+                        originalBoard: SAMPLE_BOARD_DATA,
+                        newBoard: SAMPLE_BOARD_DATA,
                         multipliers: [],
                         icons: {},
                         win: 0,
