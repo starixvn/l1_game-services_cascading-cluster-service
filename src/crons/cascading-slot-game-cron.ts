@@ -1,6 +1,4 @@
-import cloneDeep from "lodash.clonedeep";
 import { CascadingGameCron } from "sc-cascading-cluster-base/dist/crons";
-import type CascadingSlotTrialMode from "../trial-mode/cascading-slot-trial-mode";
 
 interface CascadingSlotGameCronDependencies {
     definition: any;
@@ -15,16 +13,12 @@ interface CascadingSlotGameCronDependencies {
     roundsRepository: any;
     totalMultiplierConsumer: any;
     boardGenerator: any;
-    cascadingSlotTrialMode: CascadingSlotTrialMode;
-    trialModeBoardGenerator: any;
     roundIdConsumer: any;
     gameManagementApiClientFactory: any;
     promotionFreeSpinsConsumer: any;
 }
 
 export default class CascadingSlotGameCron extends CascadingGameCron {
-    private cascadingSlotTrialMode: CascadingSlotTrialMode;
-    private trialModeBoardGenerator: any;
 
     constructor({
         definition,
@@ -39,8 +33,6 @@ export default class CascadingSlotGameCron extends CascadingGameCron {
         roundsRepository,
         totalMultiplierConsumer,
         boardGenerator,
-        cascadingSlotTrialMode,
-        trialModeBoardGenerator,
         roundIdConsumer,
         gameManagementApiClientFactory,
         promotionFreeSpinsConsumer,
@@ -61,17 +53,6 @@ export default class CascadingSlotGameCron extends CascadingGameCron {
             roundIdConsumer,
             gameManagementApiClientFactory,
             promotionFreeSpinsConsumer,
-        });
-
-        this.cascadingSlotTrialMode = cascadingSlotTrialMode;
-        this.trialModeBoardGenerator = trialModeBoardGenerator;
-    }
-
-    initTrialMode(): void {
-        this.trialModeBoardGenerator.initialize();
-        this.cascadingSlotTrialMode.init({ 
-            ...cloneDeep(this.gameData.gameConfigs), 
-            name: this.definition.name 
         });
     }
 }
