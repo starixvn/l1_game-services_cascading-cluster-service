@@ -62,14 +62,6 @@ describe("GameStartup", () => {
             expect(socketServer.of).toHaveBeenNthCalledWith(1, `/user/${definition.name}`);
         });
 
-        it("should register socket namespace user", async () => {
-            // Act
-            await gameStartup.start(app, socketServer);
-
-            // Assert
-            expect(socketServer.of).toHaveBeenNthCalledWith(1, `/user/${definition.name}`);
-        });
-
         it("should register socket namespace admin", async () => {
             // Act
             await gameStartup.start(app, socketServer);
