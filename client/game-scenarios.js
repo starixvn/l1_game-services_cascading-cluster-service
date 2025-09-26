@@ -2,6 +2,9 @@
  * Predefined game scenarios for the cascading slot game client
  */
 
+// Common test data constants
+const SAMPLE_BOARD_DATA = "1,0,1,2,4,8,1,6,4,4,3,1,1,4,6,6,4,2,7,2,0,6,0,5,3,3,0,6,1,0";
+
 export const GAME_SCENARIOS = {
     // Standard game outcomes
     NORMAL_GAME: {
@@ -9,7 +12,7 @@ export const GAME_SCENARIOS = {
         description: "Standard game with typical symbol distribution",
         board: {
             base: {
-                board: [1, 0, 1, 2, 4, 8, 1, 6, 4, 4, 3, 1, 1, 4, 6, 6, 4, 2, 7, 2, 0, 6, 0, 5, 3, 3, 0, 6, 1, 0],
+                board: SAMPLE_BOARD_DATA.split(',').map(Number),
                 multipliers: [],
             },
             tumbles: [],
