@@ -5,7 +5,6 @@ import appConfigs from "./app-configs";
 import CascadingSlotContainerRegistry from "./cascading-slot-container-registry";
 import GameApp from "./game-app";
 import gameSettings from "./game-settings";
-import { GameConfigs } from "sc-cascading-cluster-base/dist/game-data";
 
 const run = async (): Promise<void> => {
     const appName: string | undefined = process.env.APP_NAME;

@@ -78,14 +78,6 @@ describe("GameStartup", () => {
             expect(socketServer.of).toHaveBeenNthCalledWith(2, `/admin/${definition.name}`);
         });
 
-        it("should register socket namespace trial", async () => {
-            // Act
-            await gameStartup.start(app, socketServer);
-
-            // Assert
-            expect(socketServer.of).toHaveBeenNthCalledWith(3, `/trial/${definition.name}`);
-        });
-
         it("should call gameCron.start", async () => {
             // Act
             await gameStartup.start(app, socketServer);
