@@ -1,4 +1,4 @@
-FROM hub.lumigame.com/docker-hub/library/node:20.18.2-alpine AS builder
+FROM hub.lumigame.com/docker-hub/library/node:20-alpine-25h2 AS builder
 WORKDIR /app
 COPY package.json yarn.lock tsconfig.json .modprunerrc ./
 RUN npm run reg \
@@ -7,7 +7,7 @@ RUN npm run reg \
 COPY ./src/ ./src/
 RUN npm run build
 
-FROM hub.lumigame.com/docker-hub/library/node:20.18.2-alpine
+FROM hub.lumigame.com/docker-hub/library/node:20-alpine-25h2
 ARG NODE_ENV=production
 ENV NODE_ENV $NODE_ENV
 RUN mkdir /app && chown node:node /app
