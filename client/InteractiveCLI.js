@@ -4,7 +4,7 @@
  * Interactive CLI for Cascading Slot Game Client
  *
  * Usage:
- * node --import=extensionless/register cli.js
+ * node --import=extensionless/register InteractiveCLI.js
  * npm run client
  */
 
@@ -20,13 +20,15 @@ class InteractiveCLI {
 
         this.client = null;
         this.currentUser = null;
+        this.GOODBYE_MESSAGE = "Goodbye!";
+        this.sessionConfig = null;
     }
 
     async start() {
         console.log("🎰 Welcome to Cascading Slot Game!");
         console.log("=".repeat(50));
-        var sessionConfig = await this.showSessionConfiguration();
-        await this.showMainMenu(sessionConfig);
+        this.sessionConfig = await this.showSessionConfiguration();
+        await this.showMainMenu();
     }
 
     async showSessionConfiguration() {
@@ -67,11 +69,11 @@ class InteractiveCLI {
 
         } catch (error) {
             console.log("💥 Session configuration failed:", error.message);
-            return await this.showSessionConfiguration();
+            return this.showSessionConfiguration();
         }
     }
 
-    async showMainMenu(sessionConfig) {
+    async showMainMenu() {
         console.log("\n🎮 Game Menu:");
         console.log("1. Quick Play (Play a game session)");
         console.log("2. Scenario Play (Play with specific scenarios)");
@@ -83,19 +85,19 @@ class InteractiveCLI {
 
         switch (choice.trim()) {
             case "1":
-                await this.quickPlay(sessionConfig);
+                await this.quickPlay();
                 break;
             case "2":
-                await this.scenarioPlay(sessionConfig);
+                await this.scenarioPlay();
                 break;
             case "3":
-                await this.manualPlay(sessionConfig);
+                await this.manualPlay();
                 break;
             case "4":
                 await this.viewGameInfo();
                 break;
             case "5":
-                console.log("👋 Goodbye!");
+                console.log(`👋 ${this.GOODBYE_MESSAGE}`);
                 this.rl.close();
                 return;
             default:
@@ -104,21 +106,21 @@ class InteractiveCLI {
         }
     }
 
-    async quickPlay(sessionConfig) {
+    async quickPlay() {
         console.log("\n🚀 Quick Play Mode");
         console.log("-".repeat(30));
 
         // Select user
         const user = await this.selectUser();
-        user.sessionId = sessionConfig.sessionId;
-        user.userName = sessionConfig.userName;
+        user.sessionId = this.sessionConfig.sessionId;
+        user.userName = this.sessionConfig.userName;
 
         // Select bet configuration
         const betConfig = await this.selectBetConfig();
 
         console.log(`\n🎮 Starting game with ${user.playerName}, bet: Level ${betConfig.betLevel}, Coin ${betConfig.coinValue}`);
 
-        const client = new GameClient(user, { enableLogs: true, gameName: sessionConfig.gameName });
+        const client = new GameClient(user, { enableLogs: true, gameName: this.sessionConfig.gameName });
 
         try {
             const result = await client.executeFullGameFlow(betConfig);
@@ -132,7 +134,7 @@ class InteractiveCLI {
         await this.returnToMenu();
     }
 
-    async scenarioPlay(sessionConfig) {
+    async scenarioPlay() {
         console.log("\n🎯 Scenario Play Mode");
         console.log("-".repeat(30));
 
@@ -148,18 +150,18 @@ class InteractiveCLI {
 
         if (!scenarioKey) {
             console.log("❌ Invalid scenario selection.");
-            return await this.scenarioTesting();
+            return this.scenarioTesting();
         }
 
         // Select user and bet config
         const user = await this.selectUser();
-        user.userName = sessionConfig.userName;
-        user.sessionId = sessionConfig.sessionId;
+        user.userName = this.sessionConfig.userName;
+        user.sessionId = this.sessionConfig.sessionId;
         const betConfig = await this.selectBetConfig();
 
         console.log(`\n🎮 Testing scenario: ${GAME_SCENARIOS[scenarioKey].name}`);
 
-        const client = new GameClient(user, { enableLogs: true, gameName: sessionConfig.gameName });
+        const client = new GameClient(user, { enableLogs: true, gameName: this.sessionConfig.gameName });
 
         try {
             // Set scenario board
@@ -180,17 +182,17 @@ class InteractiveCLI {
             client.cleanup();
         }
 
-        await this.returnToMenu();
+        return this.returnToMenu();
     }
 
-    async manualPlay(sessionConfig) {
+    async manualPlay() {
         console.log("\n👣 Manual Play Mode");
         console.log("-".repeat(30));
 
         const user = await this.selectUser();
-        user.userName = sessionConfig.userName;
-        user.sessionId = sessionConfig.sessionId;
-        this.client = new GameClient(user, { enableLogs: true, gameName: sessionConfig.gameName });
+        user.userName = this.sessionConfig.userName;
+        user.sessionId = this.sessionConfig.sessionId;
+        this.client = new GameClient(user, { enableLogs: true, gameName: this.sessionConfig.gameName });
         this.currentUser = user;
 
         try {
@@ -204,6 +206,7 @@ class InteractiveCLI {
             // Step 2: Enter game
             console.log("\n2️⃣ Entering game...");
             const ingameResult = await this.client.enterGame();
+            console.log("ingameResult", ingameResult);
             if (ingameResult.success) {
                 console.log("✅ Entered game successfully");
                 this.displayGameConfigs(ingameResult.data.gameConfigs);
@@ -247,7 +250,7 @@ class InteractiveCLI {
             this.currentUser = null;
         }
 
-        await this.returnToMenu();
+        this.returnToMenu();
     }
 
     async viewGameInfo() {
@@ -285,7 +288,7 @@ class InteractiveCLI {
 
         if (!userEntry) {
             console.log("❌ Invalid user selection.");
-            return await this.selectUser();
+            return this.selectUser();
         }
 
         return userEntry[1];
@@ -304,7 +307,7 @@ class InteractiveCLI {
 
         if (!configEntry) {
             console.log("❌ Invalid bet configuration selection.");
-            return await this.selectBetConfig(gameConfigs);
+            return this.selectBetConfig(gameConfigs);
         }
 
         const selectedConfig = { ...configEntry[1] };
@@ -391,7 +394,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
 
     // Handle graceful shutdown
     process.on("SIGINT", () => {
-        console.log("\n\n👋 Goodbye!");
+        console.log(`\n\n👋 ${cli.GOODBYE_MESSAGE}`);
         cli.close();
         process.exit(0);
     });
@@ -399,14 +402,14 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     cli.start().catch(console.error);
 } else {
     // Alternative check for direct execution
-    const isMainModule = process.argv[1] && process.argv[1].includes("cli.js");
+    const isMainModule = process.argv[1] && process.argv[1].includes("InteractiveCLI.js");
 
     if (isMainModule) {
         const cli = new InteractiveCLI();
 
         // Handle graceful shutdown
         process.on("SIGINT", () => {
-            console.log("\n\n👋 Goodbye!");
+            console.log(`\n\n👋 ${cli.GOODBYE_MESSAGE}`);
             cli.close();
             process.exit(0);
         });

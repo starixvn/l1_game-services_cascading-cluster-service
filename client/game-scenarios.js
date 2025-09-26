@@ -4,6 +4,9 @@
 
 // Common test data constants
 const SAMPLE_BOARD_DATA = "1,0,1,2,4,8,1,6,4,4,3,1,1,4,6,6,4,2,7,2,0,6,0,5,3,3,0,6,1,0";
+const COMMON_BASE_BOARD = [1, 3, 2, 2, 1, 2, 1, 3, 3, 3, 3, 2, 3, 3, 0, 2, 2, 1, 3, 3, 3, 2, 2, 3, 2, 1, 2, 0, 1, 0];
+const COMMON_TUMBLE_SYMBOLS = [3, 2, 3, 10, 3, 3, 3, 2, 3, 3, 2, 2, 2, 2, 3, 3, 2, 2, 2, 2, 3];
+const COMMON_TUMBLE_SYMBOLS_2 = [9, 6, 5, 4, 0, 4, 0, 3, 7, 5, 8, 7, 0, 8, 3, 4, 6, 2, 8, 2];
 
 export const GAME_SCENARIOS = {
     // Standard game outcomes
@@ -24,16 +27,16 @@ export const GAME_SCENARIOS = {
         description: "Scenario designed to trigger big win condition",
         board: {
             base: {
-                board: [1, 3, 2, 2, 1, 2, 1, 3, 3, 3, 3, 2, 3, 3, 0, 2, 2, 1, 3, 3, 3, 2, 2, 3, 2, 1, 2, 0, 1, 0],
+                board: COMMON_BASE_BOARD,
                 multipliers: [],
             },
             tumbles: [
                 {
-                    newSymbols: [3, 2, 3, 10, 3, 3, 3, 2, 3, 3, 2, 2, 2, 2, 3, 3, 2, 2, 2, 2, 3],
+                    newSymbols: COMMON_TUMBLE_SYMBOLS,
                     multipliers: [6],
                 },
                 {
-                    newSymbols: [9, 6, 5, 4, 0, 4, 0, 3, 7, 5, 8, 7, 0, 8, 3, 4, 6, 2, 8, 2],
+                    newSymbols: COMMON_TUMBLE_SYMBOLS_2,
                     multipliers: [],
                 },
             ],
@@ -45,16 +48,16 @@ export const GAME_SCENARIOS = {
         description: "Scenario with multiplier symbols (2x)",
         board: {
             base: {
-                board: [1, 3, 2, 2, 1, 2, 1, 3, 3, 3, 3, 2, 3, 3, 0, 2, 2, 1, 3, 3, 3, 2, 2, 3, 2, 1, 2, 0, 1, 0],
+                board: COMMON_BASE_BOARD,
                 multipliers: [],
             },
             tumbles: [
                 {
-                    newSymbols: [3, 2, 3, 10, 3, 3, 3, 2, 3, 3, 2, 2, 2, 2, 3, 3, 2, 2, 2, 2, 3],
+                    newSymbols: COMMON_TUMBLE_SYMBOLS,
                     multipliers: [2],
                 },
                 {
-                    newSymbols: [9, 6, 5, 4, 0, 4, 0, 3, 7, 5, 8, 7, 0, 8, 3, 4, 6, 2, 8, 2],
+                    newSymbols: COMMON_TUMBLE_SYMBOLS_2,
                     multipliers: [],
                 },
             ],
@@ -66,16 +69,16 @@ export const GAME_SCENARIOS = {
         description: "Scenario with very high multiplier (50x)",
         board: {
             base: {
-                board: [1, 3, 2, 2, 1, 2, 1, 3, 3, 3, 3, 2, 3, 3, 0, 2, 2, 1, 3, 3, 3, 2, 2, 3, 2, 1, 2, 0, 1, 0],
+                board: COMMON_BASE_BOARD,
                 multipliers: [],
             },
             tumbles: [
                 {
-                    newSymbols: [3, 2, 3, 10, 3, 3, 3, 2, 3, 3, 2, 2, 2, 2, 3, 3, 2, 2, 2, 2, 3],
+                    newSymbols: COMMON_TUMBLE_SYMBOLS,
                     multipliers: [10],
                 },
                 {
-                    newSymbols: [9, 6, 5, 4, 0, 4, 0, 3, 7, 5, 8, 7, 0, 8, 3, 4, 6, 2, 8, 2],
+                    newSymbols: COMMON_TUMBLE_SYMBOLS_2,
                     multipliers: [5],
                 },
             ],

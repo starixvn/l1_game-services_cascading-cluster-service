@@ -37,8 +37,7 @@ export async function playGame(user, betConfig = null, options = {}) {
     const finalBetConfig = betConfig || BET_CONFIGS.CONSERVATIVE;
 
     try {
-        const result = await client.executeFullGameFlow(finalBetConfig);
-        return result;
+        return await client.executeFullGameFlow(finalBetConfig);
     } finally {
         client.cleanup();
     }

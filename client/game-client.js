@@ -158,8 +158,10 @@ export default class GameClient {
             this._logEvent("ingame", "Entering game");
 
             this.clientDriver.sendInGameEvent();
-            const result = await this.clientDriver.handleGameEvent((inGameData) => inGameData);
-
+            const remainingTime = await this.clientDriver.handleGameEvent((inGameData) => inGameData.remainingTime);
+            console.log("remainingTime", remainingTime);
+            const result = await this.clientDriver.handleGameEvent((inGameData) => inGameData.gameConfigs);
+            console.log("result", result);
             this.gameState.inGame = true;
             this.gameState.gameConfigs = result.gameConfigs;
             this.gameState.totalMultiplier = result.totalMultiplier || 0;

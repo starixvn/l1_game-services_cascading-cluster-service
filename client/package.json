@@ -5,16 +5,16 @@
     "type": "module",
     "main": "index.js",
     "scripts": {
-        "start": "node --import=extensionless/register cli.js",
-        "play": "node --import=extensionless/register play-game.js",
-        "client": "node --import=extensionless/register cli.js",
-        "simple": "node --import=extensionless/register examples/simple-client.js",
-        "scenarios": "node --import=extensionless/register examples/scenario-client.js",
+        "start": "node --import=extensionless/register InteractiveCLI.js",
+        "play": "node --import=extensionless/register launchGame.js",
+        "client": "node --import=extensionless/register InteractiveCLI.js",
+        "simple": "node --import=extensionless/register examples/runSimpleClient.js",
+        "scenarios": "node --import=extensionless/register examples/runScenarioClient.js",
         "test-logs": "node --import=extensionless/register test-logs.js",
         "test-bet-failure": "node --import=extensionless/register test-bet-failure.js"
     },
     "bin": {
-        "game-client": "./cli.js"
+        "game-client": "./InteractiveCLI.js"
     },
     "keywords": [
         "game",
