@@ -32,7 +32,7 @@ export default {
     },
     sentry: {
         sentryUrl: "http://50e405ebce7003a0e1edbda2bf28b14c@sentrypro-sc.ops-klprod.gamora.prod/3",
-        logIdentifier: "cascading-slot",
+        logIdentifier: "cascading-cluster",
         env: "PROD",
     },
     authenticateSettings: {

@@ -3,7 +3,7 @@ import appConfigs from "./app-configs";
 export default Object.assign(appConfigs, {
     hostingPort: 5001,
     id: 999,
-    name: "CascadingSlot",
+    name: "CascadingCluster",
     authenticateSettings: {
         url: "http://l1-auth-api-local-service:5000",
         id: "game-services",

@@ -1,6 +1,6 @@
 import * as Slot from "sc-slot-game-base";
 import { InjectionMode } from "awilix";
-import CascadingSlotContainerRegistry from "../src/cascading-slot-container-registry";
+import CascadingClusterContainerRegistry from "../src/cascading-cluster-container-registry";
 
 jest.mock(
     "awilix",
@@ -22,7 +22,7 @@ describe("service-container-registry", () => {
     describe("extends", () => {
         it("inherit Slot.SlotContainerRegistry", () => {
             // arrange
-            const serviceContainerRegistry = new CascadingSlotContainerRegistry(defaultInjectionMode as any);
+            const serviceContainerRegistry = new CascadingClusterContainerRegistry(defaultInjectionMode as any);
 
             // assert
             expect(serviceContainerRegistry instanceof Slot.SlotContainerRegistry);
@@ -32,7 +32,7 @@ describe("service-container-registry", () => {
     describe("registerModels", () => {
         it("should register correct Model", () => {
             // arrange
-            const serviceContainerRegistry = new CascadingSlotContainerRegistry(defaultInjectionMode as any);
+            const serviceContainerRegistry = new CascadingClusterContainerRegistry(defaultInjectionMode as any);
             serviceContainerRegistry.container = { register: jest.fn() } as any;
 
             // act
@@ -50,7 +50,7 @@ describe("service-container-registry", () => {
     describe("registerValidators", () => {
         it("should register correct validators", () => {
             // arrange
-            const serviceContainerRegistry = new CascadingSlotContainerRegistry(defaultInjectionMode as any);
+            const serviceContainerRegistry = new CascadingClusterContainerRegistry(defaultInjectionMode as any);
             serviceContainerRegistry.container = { register: jest.fn() } as any;
 
             // act

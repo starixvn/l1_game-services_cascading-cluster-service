@@ -1,10 +1,10 @@
 import { asClass, asValue } from "awilix";
 import { CascadingSlotContainerRegistry as BaseRegistry } from "sc-cascading-cluster-base";
-import CascadingSlotGameCron from "./crons/cascading-slot-game-cron";
+import CascadingClusterGameCron from "./crons/cascading-cluster-game-cron";
 import { freeSpins, rounds, totalMultipliers } from "./models/index";
 import type { AppConfig, GameDefinition, GameData } from "./types/index";
 
-export default class CascadingSlotContainerRegistry extends BaseRegistry {
+export default class CascadingClusterContainerRegistry extends BaseRegistry {
     register(appConfigs: AppConfig, definition: GameDefinition, gameData: GameData): any {
         super.register(appConfigs, definition, gameData);
         return this.container;
@@ -25,7 +25,7 @@ export default class CascadingSlotContainerRegistry extends BaseRegistry {
         super.registerCrons();
 
         this.container.register({
-            gameCron: asClass(CascadingSlotGameCron).singleton().proxy(),
+            gameCron: asClass(CascadingClusterGameCron).singleton().proxy(),
         });
     }
 }

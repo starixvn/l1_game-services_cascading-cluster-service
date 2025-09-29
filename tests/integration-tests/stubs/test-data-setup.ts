@@ -3,6 +3,7 @@ import { middlewares } from "sc-common";
 import {
 // @ts-ignore
     createDummyCurrency,
+// @ts-ignore
     createDummyUsers,
 // @ts-ignore
     createExchangeRate,
@@ -14,7 +15,7 @@ import {
 } from "sc-game-service-integration-utils";
 import { createCurrencyGroupGames } from "./currency-group-games-stub";
 import { stubHistoryData } from "./history-query-stubs";
-import { createDummyUsers as createCascadingSlotDummyUsers } from "./user-stub";
+import { createDummyUsers as createCascadingClusterDummyUsers } from "./user-stub";
 
 import idcounters from "sc-slot-game-base/src/models/id-counters";
 import configs from "../../../src/app-configs.IGT";
@@ -46,7 +47,7 @@ const createTestData = async () => {
     const currency = await createDummyCurrency(partnerConfig.partnerId, currencyData.code, currencyData.name);
     await createCurrencyGroupGames(currency.groupId, game.id, gameConfig);
     await createDummyUsers(currency);
-    await createCascadingSlotDummyUsers(currency);
+    await createCascadingClusterDummyUsers(currency);
     await createRounds();
     await createPlayerFreeSpins();
     await createPlayerMultipliers();

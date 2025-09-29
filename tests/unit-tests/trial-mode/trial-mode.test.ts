@@ -1,17 +1,17 @@
-import { CascadingSlotTrialMode, TrialModeRoundCalculator } from "../../../src/trial-mode";
+import { CascadingClusterTrialMode, TrialModeRoundCalculator } from "../../../src/trial-mode";
 import { stub } from "jest-micro-auto-stub";
 import { logger } from "sc-common";
 
 jest.mock("sc-trial-mode");
 
 describe("trialMode", () => {
-    let cascadingSlotTrialMode: CascadingSlotTrialMode;
+    let cascadingClusterTrialMode: CascadingClusterTrialMode;
 
     const trialModeRoundCalculator = stub(TrialModeRoundCalculator);
     const logService = stub(logger);
 
     beforeEach(() => {
-        cascadingSlotTrialMode = new CascadingSlotTrialMode(trialModeRoundCalculator, logService);
+        cascadingClusterTrialMode = new CascadingClusterTrialMode(trialModeRoundCalculator, logService);
     });
 
     describe("init", () => {
@@ -20,10 +20,10 @@ describe("trialMode", () => {
             const config = {} as any;
 
             // Act
-            cascadingSlotTrialMode.init(config);
+            cascadingClusterTrialMode.init(config);
 
             // Assert
-            expect((cascadingSlotTrialMode as any).trialMode.init).toBeCalledWith(config);
+            expect((cascadingClusterTrialMode as any).trialMode.init).toBeCalledWith(config);
         });
     });
 
@@ -33,10 +33,10 @@ describe("trialMode", () => {
             const socketClient = {} as any;
 
             // Act
-            cascadingSlotTrialMode.registerSocketEvent(socketClient);
+            cascadingClusterTrialMode.registerSocketEvent(socketClient);
 
             // Assert
-            expect((cascadingSlotTrialMode as any).trialMode.registerSocketHandler).toBeCalledWith(socketClient);
+            expect((cascadingClusterTrialMode as any).trialMode.registerSocketHandler).toBeCalledWith(socketClient);
         });
     });
 });

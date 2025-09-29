@@ -1,5 +1,5 @@
 import { TrialMode } from "sc-trial-mode";
-export default class CascadingSlotTrialMode {
+export default class CascadingClusterTrialMode {
     trialModeRoundCalculator;
     logService;
     trialMode;
@@ -15,4 +15,3 @@ export default class CascadingSlotTrialMode {
         this.trialMode.registerSocketHandler(socketClient);
     }
 }
-//# sourceMappingURL=cascading-slot-trial-mode.js.map

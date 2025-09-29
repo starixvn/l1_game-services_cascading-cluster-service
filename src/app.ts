@@ -2,7 +2,7 @@ import { logger } from "sc-common";
 import GameManagementApiClientFactory, { getOrDefault } from "sc-game-base/src/core/game-management-api";
 import { SlotGameData, SlotGameDefinition } from "sc-slot-game-base";
 import appConfigs from "./app-configs";
-import CascadingSlotContainerRegistry from "./cascading-slot-container-registry";
+import CascadingClusterContainerRegistry from "./cascading-cluster-container-registry";
 import GameApp from "./game-app";
 import gameSettings from "./game-settings";
 
@@ -31,7 +31,7 @@ const run = async (): Promise<void> => {
             gameData.gameConfigs = gameConfigs;
 
             const definition = new SlotGameDefinition(gameSettings as any);
-            const container = new CascadingSlotContainerRegistry().register(appConfigs, definition, gameData);
+            const container = new CascadingClusterContainerRegistry().register(appConfigs, definition, gameData);
 
             await app.startGame(container);
         } else {

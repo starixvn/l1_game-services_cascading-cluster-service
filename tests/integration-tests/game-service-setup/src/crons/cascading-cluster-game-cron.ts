@@ -1,9 +1,9 @@
 import cloneDeep from "lodash.clonedeep";
 import { CascadingGameCron } from "sc-cascading-cluster-base/dist/crons";
-export default class CascadingSlotGameCron extends CascadingGameCron {
-    cascadingSlotTrialMode;
+export default class CascadingClusterGameCron extends CascadingGameCron {
+    cascadingClusterTrialMode;
     trialModeBoardGenerator;
-    constructor({ definition, gameData, bot, settleGameRoundConsumer, freeSpinsConsumer, idCountersConsumer, gameStatusPublisher, runningRoundInfoPublisher, logService, roundsRepository, totalMultiplierConsumer, boardGenerator, cascadingSlotTrialMode, trialModeBoardGenerator, roundIdConsumer, gameManagementApiClientFactory, promotionFreeSpinsConsumer, }) {
+    constructor({ definition, gameData, bot, settleGameRoundConsumer, freeSpinsConsumer, idCountersConsumer, gameStatusPublisher, runningRoundInfoPublisher, logService, roundsRepository, totalMultiplierConsumer, boardGenerator, cascadingClusterTrialMode, trialModeBoardGenerator, roundIdConsumer, gameManagementApiClientFactory, promotionFreeSpinsConsumer, }) {
         super({
             definition,
             gameData,
@@ -21,12 +21,12 @@ export default class CascadingSlotGameCron extends CascadingGameCron {
             gameManagementApiClientFactory,
             promotionFreeSpinsConsumer,
         });
-        this.cascadingSlotTrialMode = cascadingSlotTrialMode;
+        this.cascadingClusterTrialMode = cascadingClusterTrialMode;
         this.trialModeBoardGenerator = trialModeBoardGenerator;
     }
     initTrialMode() {
         this.trialModeBoardGenerator.initialize();
-        this.cascadingSlotTrialMode.init({
+        this.cascadingClusterTrialMode.init({
             ...cloneDeep(this.gameData.gameConfigs),
             name: this.definition.name
         });

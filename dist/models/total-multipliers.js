@@ -3,4 +3,3 @@ import { TotalMultiplierSchema } from "sc-cascading-cluster-base/dist/models";
 export default function (gameConfigName) {
     return mongoose.model(`${gameConfigName}_multiplier`, TotalMultiplierSchema);
 }
-//# sourceMappingURL=total-multipliers.js.map

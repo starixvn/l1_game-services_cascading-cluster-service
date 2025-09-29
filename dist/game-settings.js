@@ -8,4 +8,3 @@ const gameSettings = {
     bonusLiveSeconds: appConfigs.bonusLiveSeconds,
 };
 export default gameSettings;
-//# sourceMappingURL=game-settings.js.map

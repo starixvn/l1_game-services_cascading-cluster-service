@@ -4,4 +4,3 @@ export default class TrialModeRoundCalculator extends RoundCalculator {
         super({ boardGenerator: trialModeBoardGenerator, tumbleCalculator });
     }
 }
-//# sourceMappingURL=trial-mode-round-calculator.js.map

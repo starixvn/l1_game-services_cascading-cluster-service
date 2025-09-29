@@ -1,1 +1,0 @@
-{"version":3,"file":"total-multipliers.js","sourceRoot":"","sources":["../../src/models/total-multipliers.ts"],"names":[],"mappings":"AAAA,OAAO,QAAQ,MAAM,UAAU,CAAC;AAChC,OAAO,EAAE,qBAAqB,EAAE,MAAM,uCAAuC,CAAC;AAE9E,MAAM,CAAC,OAAO,WAAW,cAAsB;IAC3C,OAAO,QAAQ,CAAC,KAAK,CAAC,GAAG,cAAc,aAAa,EAAE,qBAAqB,CAAC,CAAC;AACjF,CAAC"}

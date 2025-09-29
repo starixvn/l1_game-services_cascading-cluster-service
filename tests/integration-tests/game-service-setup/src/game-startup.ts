@@ -1,10 +1,10 @@
 import { logger } from "sc-common";
 import { Core } from "sc-game-base";
 export default class GameStartup extends Core.BaseStartup {
-    cascadingSlotTrialMode;
+    cascadingClusterTrialMode;
     constructor(container) {
         super(container);
-        this.cascadingSlotTrialMode = this.container.resolve("cascadingSlotTrialMode");
+        this.cascadingClusterTrialMode = this.container.resolve("cascadingClusterTrialMode");
     }
     async start(app, socketServer) {
         const gameNameInSocketNamespace = this.definition.name.toLowerCase();
@@ -16,7 +16,7 @@ export default class GameStartup extends Core.BaseStartup {
             this.initAdminSocketRouter(socketClient);
         });
         socketServer.of(`/trial/${gameNameInSocketNamespace}`).on("connection", (socketClient) => {
-            this.cascadingSlotTrialMode.registerSocketEvent(socketClient);
+            this.cascadingClusterTrialMode.registerSocketEvent(socketClient);
         });
         try {
             await this.gameCron.start();

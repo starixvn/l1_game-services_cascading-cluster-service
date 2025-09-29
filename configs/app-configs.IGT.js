@@ -31,7 +31,7 @@ export default {
     },
     sentry: {
         sentryUrl: "",
-        logIdentifier: "cascading-slot",
+        logIdentifier: "cascading-cluster",
         env: "DEV",
     },
     authenticateSettings: {

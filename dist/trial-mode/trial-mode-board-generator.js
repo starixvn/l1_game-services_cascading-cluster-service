@@ -11,4 +11,3 @@ export default class TrialModeBoardGenerator extends CascadingBoardGenerator {
         super(definition, gameData, trialModeBoardSettings, logService);
     }
 }
-//# sourceMappingURL=trial-mode-board-generator.js.map

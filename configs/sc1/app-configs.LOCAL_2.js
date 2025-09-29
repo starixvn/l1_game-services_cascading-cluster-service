@@ -32,7 +32,7 @@ export default {
     },
     sentry: {
         sentryUrl: "https://50e405ebce7003a0e1edbda2bf28b14c@sentry-k8s.lumigame.com/3",
-        logIdentifier: "cascading-slot",
+        logIdentifier: "cascading-cluster",
         env: "LOCAL-2",
     },
     authenticateSettings: {

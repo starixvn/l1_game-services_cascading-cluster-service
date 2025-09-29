@@ -4,11 +4,11 @@ import { when } from "jest-when";
 import mongoose from "mongoose";
 import { Core } from "sc-game-base";
 import GameStartup from "../../src/game-startup";
-import CascadingSlotTrialMode from "../../src/trial-mode/cascading-slot-trial-mode";
+import CascadingClusterTrialMode from "../../src/trial-mode/cascading-cluster-trial-mode";
 
 describe("GameStartup", () => {
     const container = createContainer();
-    const cascadingSlotTrialMode = stub(CascadingSlotTrialMode);
+    const cascadingClusterTrialMode = stub(CascadingClusterTrialMode);
     const gameConfigsRepository = stubMongoose(mongoose.Model);
     const definition = { name: "treasureisland" };
     const app = {} as any;
@@ -28,7 +28,7 @@ describe("GameStartup", () => {
         when(container.resolve as any).calledWith("definition").mockReturnValue(definition);
         when(container.resolve as any).calledWith("gameCron").mockReturnValue(gameCron);
         when(container.resolve as any).calledWith("processBetQueue").mockReturnValue(processBetQueue);
-        when(container.resolve as any).calledWith("cascadingSlotTrialMode").mockReturnValue(cascadingSlotTrialMode);
+        when(container.resolve as any).calledWith("cascadingClusterTrialMode").mockReturnValue(cascadingClusterTrialMode);
         when(container.resolve as any).calledWith("gameConfigsRepository").mockReturnValue(gameConfigsRepository);
 
         gameStartup = new GameStartup(container);

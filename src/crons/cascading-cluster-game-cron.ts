@@ -1,6 +1,6 @@
 import { CascadingGameCron } from "sc-cascading-cluster-base/dist/crons";
 
-interface CascadingSlotGameCronDependencies {
+interface CascadingClusterGameCronDependencies {
     definition: any;
     gameData: any;
     bot: any;
@@ -18,7 +18,7 @@ interface CascadingSlotGameCronDependencies {
     promotionFreeSpinsConsumer: any;
 }
 
-export default class CascadingSlotGameCron extends CascadingGameCron {
+export default class CascadingClusterGameCron extends CascadingGameCron {
 
     constructor({
         definition,
@@ -36,7 +36,7 @@ export default class CascadingSlotGameCron extends CascadingGameCron {
         roundIdConsumer,
         gameManagementApiClientFactory,
         promotionFreeSpinsConsumer,
-    }: CascadingSlotGameCronDependencies) {
+    }: CascadingClusterGameCronDependencies) {
         super({
             definition,
             gameData,

@@ -11,4 +11,3 @@ export default class GameApp extends Core.BaseGameApp {
         await gameStartUp.start(this.app, this.socketServer);
     }
 }
-//# sourceMappingURL=game-app.js.map

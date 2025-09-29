@@ -28,7 +28,7 @@ const gameConfig = {
     isBeta: true,
     gameId: 47,
     randomMode: 0,
-    cascadingSlotsConfig: {
+    cascadingClusterConfig: {
         mode: 1,
         bigWinRatio: 2.5,
         multiplierBonus: { min: 2, max: 28 },
