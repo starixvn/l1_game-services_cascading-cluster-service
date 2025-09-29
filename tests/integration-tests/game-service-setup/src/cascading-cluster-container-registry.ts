@@ -2,7 +2,7 @@ import { asClass, asValue } from "awilix";
 import { CascadingSlotContainerRegistry as BaseRegistry } from "sc-cascading-cluster-base";
 import CascadingClusterGameCron from "./crons/cascading-cluster-game-cron";
 import { freeSpins, rounds, totalMultipliers } from "./models/index";
-import { CascadingClusterTrialMode, TrialModeBoardGenerator, TrialModeRoundCalculator } from "./trial-mode/";
+import { CascadingClusterTrialMode, TrialModeBoardGenerator, TrialModeRoundCalculator } from "./trial-mode";
 export default class CascadingClusterContainerRegistry extends BaseRegistry {
     register(appConfigs, definition, gameData) {
         this.registerTrialMode();
