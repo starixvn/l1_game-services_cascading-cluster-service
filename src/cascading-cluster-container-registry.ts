@@ -17,6 +17,7 @@ export default class CascadingClusterContainerRegistry extends BaseRegistry {
         this.container.register({
             roundsRepository: asValue(rounds(definition.configName)),
             freeSpinsRepository: asValue(freeSpins(definition.configName)),
+            freeSpinStateRepository: asValue(freeSpins(definition.configName)),
             totalMultiplierRepository: asValue(totalMultipliers(definition.configName)),
         });
     }
