@@ -1,7 +1,7 @@
-import { asClass, asValue } from "awilix";
+import { asValue } from "awilix";
 import { CascadingSlotContainerRegistry as BaseRegistry } from "sc-cascading-cluster-base";
-import { freeSpins, rounds, freeSpinState } from "./models/index";
-import type { AppConfig, GameDefinition, GameData } from "./types/index";
+import { freeSpins, freeSpinState, rounds } from "./models/index";
+import type { AppConfig, GameData, GameDefinition } from "./types/index";
 
 export default class CascadingClusterContainerRegistry extends BaseRegistry {
     register(appConfigs: AppConfig, definition: GameDefinition, gameData: GameData): any {
