@@ -1,7 +1,6 @@
 import { asClass, asValue } from "awilix";
 import { CascadingSlotContainerRegistry as BaseRegistry } from "sc-cascading-cluster-base";
-import CascadingClusterGameCron from "./crons/cascading-cluster-game-cron";
-import { freeSpins, rounds, totalMultipliers } from "./models/index";
+import { freeSpins, rounds, freeSpinState } from "./models/index";
 import type { AppConfig, GameDefinition, GameData } from "./types/index";
 
 export default class CascadingClusterContainerRegistry extends BaseRegistry {
@@ -17,16 +16,7 @@ export default class CascadingClusterContainerRegistry extends BaseRegistry {
         this.container.register({
             roundsRepository: asValue(rounds(definition.configName)),
             freeSpinsRepository: asValue(freeSpins(definition.configName)),
-            freeSpinStateRepository: asValue(freeSpins(definition.configName)),
-            totalMultiplierRepository: asValue(totalMultipliers(definition.configName)),
-        });
-    }
-
-    registerCrons(): void {
-        super.registerCrons();
-
-        this.container.register({
-            gameCron: asClass(CascadingClusterGameCron).singleton().proxy(),
+            freeSpinStateRepository: asValue(freeSpinState(definition.configName)),
         });
     }
 }

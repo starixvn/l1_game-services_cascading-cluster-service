@@ -1,4 +1,4 @@
-import type { AppConfig } from './types/index';
+import type { AppConfig } from "./types/index";
 
 const appConfigs: AppConfig = {
     hostingPort: 5000,
@@ -40,7 +40,7 @@ const appConfigs: AppConfig = {
     },
     enabledLogs: true,
     database: {
-        url: "mongodb://lmn_backend:LmnBackend@10.10.50.12:39202,10.10.50.13:39202,10.10.50.14:39202/?replicaSet=L2ppLocal",
+        url: "mongodb://127.0.0.1:27018/",
         options: {
             dbName: "minigame",
             useNewUrlParser: true,
@@ -49,7 +49,7 @@ const appConfigs: AppConfig = {
     },
     sentry: {
         sentryUrl: "https://8eb9632f2663e57c838ec83febbee14f@sentry-k8s.lumigame.com/4",
-        logIdentifier: "fourguardians",
+        logIdentifier: "cascading-cluster",
         env: "LOCAL_2",
     },
     adminSecretKey: "asWDEerfOIdgsdqRTFabvmgh",
@@ -69,7 +69,7 @@ const appConfigs: AppConfig = {
         timeout: 5000,
         useAuthentication: false,
     },
-     trackingApiSettings: {
+    trackingApiSettings: {
         baseUrl: "https://l2-proxy2.lumigame.com/user-tracking-api",
     },
 };
