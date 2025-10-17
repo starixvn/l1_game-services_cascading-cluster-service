@@ -2,10 +2,9 @@ module.exports = async () => {
     return {
         rootDir: "./",
         verbose: true,
-        preset: "ts-jest",
         transform: {
-            "^.+\\.js?$": "babel-jest",
-            "^.+\\.ts?$": "ts-jest",
+            "^.+\\.js?$": "@swc/jest",
+            "^.+\\.ts?$": "@swc/jest",
         },
         transformIgnorePatterns: [
             "node_modules/(?!(sc-base-database|sc-common|sc-game-base|sc-base-apis|sc-api-client|sc-slot-game-base|sc-cascading-cluster-base|sc-game-service-integration-utils|axios|nanoid|crypto-random-string|sc-game-management-client)/)",
