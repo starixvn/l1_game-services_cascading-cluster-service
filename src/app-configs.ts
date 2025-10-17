@@ -40,7 +40,7 @@ const appConfigs: AppConfig = {
     },
     enabledLogs: true,
     database: {
-        url: "mongodb://lmn_backend:LmnBackend@10.10.50.12:39202,10.10.50.13:39202,10.10.50.14:39202/?replicaSet=L2ppLocal",
+        url: "mongodb://localhost:27018/",
         options: {
             dbName: "minigame",
             useNewUrlParser: true,
@@ -49,11 +49,11 @@ const appConfigs: AppConfig = {
     },
     sentry: {
         sentryUrl: "https://8eb9632f2663e57c838ec83febbee14f@sentry-k8s.lumigame.com/4",
-        logIdentifier: "fourguardians",
+        logIdentifier: "cascading-cluster",
         env: "LOCAL_2",
     },
     adminSecretKey: "asWDEerfOIdgsdqRTFabvmgh",
-    freeSpinLiveSeconds: 300, // 1 day
+    freeSpinLiveSeconds: 30, // 1 day
     bonusLiveSeconds: 125,
     jackpotLiveSeconds: 63,
     otel: {

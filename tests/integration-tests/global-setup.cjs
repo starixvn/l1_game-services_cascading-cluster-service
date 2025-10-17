@@ -21,7 +21,7 @@ const startSetupDataProcess = (onSetupDone) => {
 
 const startServiceProcess = (onServiceStarted) => {
     const serviceProcess = spawn("cmd", [
-        "/c", 
+        "/c",
         "npx",
         "tsx",
         "./tests/integration-tests/game-service-setup/game-service-app.ts"
@@ -39,6 +39,10 @@ const startServiceProcess = (onServiceStarted) => {
 
     serviceProcess.stderr.on("data", (data) => {
         console.log(`stderr: ${data}`);
+    });
+
+    serviceProcess.on("close", (code) => {
+        console.log(`service process exited with code ${code}`);
     });
 
     return serviceProcess;

@@ -13,7 +13,7 @@ export default Object.assign(appConfigs, {
         audiences: ["api", "admin-api"],
     },
     database: {
-        url: "mongodb://127.0.0.1:27017",
+        url: "mongodb://127.0.0.1:27018",
         options: {
             dbName: "game-service-test-db",
             useNewUrlParser: true,
@@ -27,5 +27,11 @@ export default Object.assign(appConfigs, {
         baseUrl: "https://l1-proxy.lumigame.com/game-promotion-api-igt-test",
         timeout: 5000,
         useAuthentication: false,
+    },
+    trackingApiSettings: {
+        baseUrl: "https://l1-proxy.lumigame.com/user-tracking-api-igt-test",
+    },
+    userServiceSettings: {
+        url: "https://l1-proxy.lumigame.com/user-service-igt-test",
     },
 });

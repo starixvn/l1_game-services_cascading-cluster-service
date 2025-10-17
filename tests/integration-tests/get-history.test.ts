@@ -3,6 +3,7 @@ import { GameClientDriver } from "sc-game-service-integration-utils";
 import { initUserSession } from "./helpers";
 import { queryHistoryUser } from "./stubs/history-query-stubs";
 import { socketOptions } from "./stubs/test-data";
+import { COMMON_SETTLEMENT_RESULT } from "./stubs/test-constants";
 
 describe("event get history", () => {
     let userClientDriver: GameClientDriver;
@@ -24,7 +25,6 @@ describe("event get history", () => {
             const result = await userClientDriver.handleGameEvent((betHistoryData) => betHistoryData);
 
             // Assert
-
             expect(result).toStrictEqual(expectedValue);
         });
     });
@@ -32,59 +32,34 @@ describe("event get history", () => {
     describe("when page > 0 and real player", () => {
         it("should return details", async () => {
             // Arrange
-            const SAMPLE_BOARD_DATA = "1,0,1,2,4,8,1,6,4,4,3,1,1,4,6,6,4,2,7,2,0,6,0,5,3,3,0,6,1,0";
             const expectedValue = {
                 history: {
                     betLogs: [
                         {
                             betLevel: 1,
                             betWin: 0,
-                            coinValue: 1,
-                            currency: "$US",
+                            coinValue: 0.1,
+                            currency: "INH",
                             freeSpin: true,
+                            buyFreeSpin: 0,
                             id: 6,
                             reachMaxWin: false,
-                            time: "2022-06-03T07:32:21.142Z",
-                            settlementResult: {
-                                freeSpins: {
-                                    count: 0,
-                                    odds: 0,
-                                },
-                                tumbles: [
-                                    {
-                                        multipliers: [],
-                                        newBoard: SAMPLE_BOARD_DATA,
-                                        originalBoard: SAMPLE_BOARD_DATA,
-                                        win: 0,
-                                    },
-                                ],
-                            },
-                            totalAmount: 20,
+                            time: "2025-10-17T09:06:37.774Z",
+                            settlementResult: COMMON_SETTLEMENT_RESULT,
+                            totalAmount: 2,
                         },
                         {
                             betLevel: 1,
                             betWin: 0,
-                            coinValue: 1,
-                            currency: "$US",
+                            coinValue: 0.1,
+                            currency: "INH",
                             freeSpin: false,
                             id: 5,
                             reachMaxWin: false,
-                            time: "2022-06-03T07:32:21.142Z",
-                            settlementResult: {
-                                freeSpins: {
-                                    count: 0,
-                                    odds: 0,
-                                },
-                                tumbles: [
-                                    {
-                                        multipliers: [],
-                                        newBoard: SAMPLE_BOARD_DATA,
-                                        originalBoard: SAMPLE_BOARD_DATA,
-                                        win: 0,
-                                    },
-                                ],
-                            },
-                            totalAmount: 20,
+                            time: "2025-10-17T09:06:37.774Z",
+                            settlementResult: COMMON_SETTLEMENT_RESULT,
+                            totalAmount: 2,
+                            buyFreeSpin: 0,
                         },
                     ],
                     page: 1,

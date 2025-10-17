@@ -2,66 +2,72 @@
 import { createDummyUser } from "sc-game-service-integration-utils";
 import { COMMON_ODDS_CONFIG, COMMON_SETTLEMENT_RESULT, SAMPLE_BOARD_DATA } from "./test-constants";
 
-export const queryHistoryUser = { playerId: 3, playerName: "QueryHistoryUser", UID: "" };
+export const queryHistoryUser = { playerId: "000101", playerName: "TestUser", UID: "" };
 
-export const playerMultipliers = {
-    playerId: 6,
-    time: "2022-06-22T06:16:07.186Z",
-    uid: "UID",
+export const playerFreeSpinState = {
+    ended: true,
+    uid: "68dde22df34d308f7bf1a0f2",
+    __v: 0,
+    maxWin: 2000,
+    name: "TestUser",
+    playerId: "000101",
     rounds: [
         {
-            prevTotalMultiplier: 0,
-            totalMultiplier: 2,
-            multiplier: 2,
-            time: "2022-06-22T06:16:07.186Z",
-            roundId: 6,
+            time: new Date(),
+            roundId: 43,
+            reelMultipliers: [
+                [-1, -1, -1, -1, -1, -1],
+                [-1, -1, -1, -1, -1, -1],
+                [-1, -1, -1, -1, -1, -1],
+                [-1, -1, -1, -1, -1, -1],
+                [-1, -1, -1, -1, -1, -1],
+                [-1, -1, -1, -1, -1, -1],
+            ],
+            stageQueue: [],
+            currentStage: 0,
+            rageMeter: 0,
+            remainingMaxWin: 2000,
         },
     ],
-    ended: true,
-    endTime: "2022-06-22T06:17:07.186Z",
+    endTime: new Date(),
 };
 
-
-export const stubHistoryData = async (currency, TreasureIslandRounds, TreasureIslandTotalMultipliers) => {
+export const stubHistoryData = async (currency, GoldAndDragonRounds, GoldAndDragonFreeSpinStates) => {
     const { userInfo, userSession } = await createDummyUser(queryHistoryUser.playerId, queryHistoryUser.playerName, currency);
 
     queryHistoryUser.UID = userSession.userId as string;
-    (playerMultipliers as any).name = userSession.playerName;
+    (playerFreeSpinState as any).name = userSession.playerName;
 
     const createHistoryRound = (id: number, freeSpin: boolean) => ({
-        coinValue: 1,
+        id,
+        name: userSession.playerName,
+        siteId: "4100300",
+        uid: userSession.userId,
+        coinValue: 0.1,
         betLevel: 1,
         betMultiplier: 20,
-        multiplier: 0,
-        totalAmount: 20,
-        totalTumbleWin: 0,
-        totalMultiplier: 0,
+        totalAmount: 2,
         freeSpin,
-        betwin: 0,
+        reachMaxWin: false,
+        odds: {
+            symbols: COMMON_ODDS_CONFIG.odds,
+            freeSpins: COMMON_ODDS_CONFIG.freeSpins,
+        },
+        betWin: 0,
         paid: true,
-        id,
-        uid: userSession.userId,
-        name: userInfo.name,
-        time: "2022-06-03T07:32:21.142+00:00",
-        rate: 1,
-        exchangeRateId: 1,
-        odds: COMMON_ODDS_CONFIG,
-        siteId: "4100300",
-        currency: "$US",
-        operatorId: "ONEworks1",
+        time: new Date("2025-10-17T09:06:37.774Z"),
+        currency: "INH",
+        rate: 0.03935056827912655,
+        exchangeRateId: 2103,
+        operatorId: "ONEworksVGCash",
         playerId: userSession.playerId,
         __v: 0,
-        endTime: "2022-06-03T07:32:21.150+00:00",
-        result: SAMPLE_BOARD_DATA,
+        endTime: new Date(),
         settlementResult: COMMON_SETTLEMENT_RESULT,
     });
 
-    const historyRounds = [
-        createHistoryRound(5, false),
-        createHistoryRound(6, true),
-    ];
+    const historyRounds = [createHistoryRound(5, false), createHistoryRound(6, true)];
 
-
-    await TreasureIslandRounds.insertMany(historyRounds);
-    return TreasureIslandTotalMultipliers.insertMany([playerMultipliers]);
+    await GoldAndDragonRounds.insertMany(historyRounds);
+    return GoldAndDragonFreeSpinStates.insertMany([playerFreeSpinState]);
 };

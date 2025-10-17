@@ -1,17 +1,17 @@
 import mongoose from "mongoose";
 import { middlewares } from "sc-common";
 import {
-// @ts-ignore
+    // @ts-ignore
     createDummyCurrency,
-// @ts-ignore
+    // @ts-ignore
     createDummyUsers,
-// @ts-ignore
+    // @ts-ignore
     createExchangeRate,
-// @ts-ignore
+    // @ts-ignore
     createGameConfig,
-// @ts-ignore
+    // @ts-ignore
     createPartnerConfig,
-// @ts-ignore
+    // @ts-ignore
 } from "sc-game-service-integration-utils";
 import { createCurrencyGroupGames } from "./currency-group-games-stub";
 import { stubHistoryData } from "./history-query-stubs";
@@ -19,12 +19,12 @@ import { createDummyUsers as createCascadingClusterDummyUsers } from "./user-stu
 
 import idcounters from "sc-slot-game-base/src/models/id-counters";
 import configs from "../../../src/app-configs.IGT";
-import { freeSpins, rounds, totalMultipliers } from "../../../src/models";
-import { currencyData, game, gameConfig, playerFreeSpins, playerMultipliers, rounds as roundDatas } from "./test-data";
+import { freeSpins, freeSpinState, rounds } from "../../../src/models";
+import { currencyData, game, gameConfig, playerFreeSpins, playerFreeSpinStates, rounds as roundDatas } from "./test-data";
 
-const TreasureIslandRounds = rounds("treasureisland");
-const TreasureIslandTotalMultipliers = totalMultipliers("treasureisland");
-const TreasureIslandFreeSpins = freeSpins("treasureisland");
+const GoldAndDragonRounds = rounds("goldanddragon");
+const GoldAndDragonFreeSpins = freeSpins("goldanddragon");
+const GoldAndDragonFreeSpinStates = freeSpinState("goldanddragon");
 
 const connectDatabase = async () => {
     await middlewares.database.configureDatabase(mongoose, configs.database);
@@ -50,24 +50,24 @@ const createTestData = async () => {
     await createCascadingClusterDummyUsers(currency);
     await createRounds();
     await createPlayerFreeSpins();
-    await createPlayerMultipliers();
-    await stubHistoryData(currency, TreasureIslandRounds, TreasureIslandTotalMultipliers);
-    await idcounters.create({ f: "id", m: "TreasureIsland_round", c: 6 });
+    await createPlayerFreeSpinStates();
+    await stubHistoryData(currency, GoldAndDragonRounds, GoldAndDragonFreeSpinStates);
+    await idcounters.create({ f: "id", m: "GoldAndDragon_round", c: 6 });
     console.log("Create game config & dummy user for testing successfully!");
 
     process.exit(0);
 };
 
 const createRounds = async () => {
-    return TreasureIslandRounds.insertMany(roundDatas);
+    return GoldAndDragonRounds.insertMany(roundDatas);
 };
 
 const createPlayerFreeSpins = async () => {
-    return TreasureIslandFreeSpins.insertMany(playerFreeSpins);
+    return GoldAndDragonFreeSpins.insertMany(playerFreeSpins);
 };
 
-const createPlayerMultipliers = async () => {
-    return TreasureIslandTotalMultipliers.insertMany(playerMultipliers);
+const createPlayerFreeSpinStates = async () => {
+    return GoldAndDragonFreeSpinStates.insertMany(playerFreeSpinStates);
 };
 
 createTestData();

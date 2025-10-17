@@ -3,17 +3,20 @@ import { gameConfigs as gameConfigsRepository, userInfos as userInfoRepository }
 // @ts-ignore
 import { initAPIStub, stubUserService, subGameManagementService } from "sc-game-service-integration-utils";
 import { endGameErrorUser, errorUser, internalServerErrorUser, normalUser } from "sc-game-service-integration-utils/src/stubs/user-stub";
-import { SlotGameData, SlotGameDefinition } from "sc-slot-game-base";
 import appConfigs from "../../../src/app-configs.IGT";
 import GameApp from "../../../src/game-app";
 import gameSettings from "../../../src/game-settings";
 import { queryHistoryUser } from "../stubs/history-query-stubs";
 import { haveTotalMultiplierUser, placeBetUser } from "../stubs/user-stub";
 import IGTContainerRegistry from "./igt-container-registry";
+import { SlotGameDefinition, SlotGameData } from "sc-slot-game-base";
 
 export const run = async (gameName) => {
     initAPIStub(appConfigs.apiSettings.apiUrl);
-    stubUserService(appConfigs, [placeBetUser, haveTotalMultiplierUser, normalUser, errorUser, internalServerErrorUser, endGameErrorUser]);
+    stubUserService(appConfigs, [endGameErrorUser, errorUser, internalServerErrorUser, normalUser, queryHistoryUser] as any);
+    stubGameNotifications();
+    stubUserTrackingApi();
+    stubDomain();
 
     const app = new GameApp(gameName, appConfigs);
     await app.run();
@@ -66,6 +69,31 @@ const stubUserInfo = (userInfo, appConfigs) => {
         .reply(200, buildResult({}));
 };
 
+const stubGameNotifications = () => {
+    nock(appConfigs.gameManagementApiSettings.BASE)
+        .persist()
+        .post(`/game-notifications/clear`, () => true)
+        .reply(200, buildResult({}));
+    nock(appConfigs.gameManagementApiSettings.BASE)
+        .persist()
+        .post(`/game-notifications/delete`, () => true)
+        .reply(200, buildResult({}));
+};
+
+const stubDomain = () => {
+    nock(appConfigs.gameManagementApiSettings.BASE)
+        .persist()
+        .get(`/domain`, () => true)
+        .reply(200, buildResult({}));
+};
+
+const stubUserTrackingApi = () => {
+    nock(appConfigs.trackingApiSettings.baseUrl)
+        .persist()
+        .post(`/game/sign-out`, () => true)
+        .reply(200, buildResult({}));
+};
+
 const buildResult = (data) => {
     return {
         errorCode: 0,
@@ -75,4 +103,4 @@ const buildResult = (data) => {
     };
 };
 
-run("treasureisland");
+run("goldanddragon");
