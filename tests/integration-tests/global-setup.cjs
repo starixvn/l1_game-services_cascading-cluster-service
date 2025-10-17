@@ -41,10 +41,6 @@ const startServiceProcess = (onServiceStarted) => {
         console.log(`stderr: ${data}`);
     });
 
-    serviceProcess.on("close", (code) => {
-        console.log(`service process exited with code ${code}`);
-    });
-
     return serviceProcess;
 };
 

@@ -16,7 +16,7 @@
         "prod:ts": "npm run build && npm run prod",
         "reg": "npm set registry http://npm.lumigame.com",
         "integration-test:setup": "npx tsx ./tests/integration-tests/stubs/test-data-setup.ts",
-        "integration-test": "jest --config ./jest.integration-test.config.cjs --testPathPattern=tests/integration-tests/ --ci --reporters=default --reporters=jest-junit --forceExit --runInBand"
+        "integration-test": "jest --config ./jest.integration-test.config.cjs --testPathPattern=tests/integration-tests/ --ci --reporters=default --reporters=jest-junit --forceExit --runInBand --detectOpenHandles"
     },
     "jestSonar": {
         "reportPath": "reports",
