@@ -42,7 +42,13 @@ const clearAllData = async () => {
 const createTestData = async () => {
     await connectDatabase();
     await createExchangeRate();
-    await createGameConfig(gameConfig);
+    await mongoose.connection.db.collection("game_configs").updateOne(
+        { name: gameConfig.name },
+        { $set: gameConfig },
+        {
+            upsert: true,
+        }
+    );
     const partnerConfig = await createPartnerConfig(game.id);
     const currency = await createDummyCurrency(partnerConfig.partnerId, currencyData.code, currencyData.name);
     await createCurrencyGroupGames(currency.groupId, game.id, gameConfig);

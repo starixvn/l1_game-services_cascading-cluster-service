@@ -1,5 +1,5 @@
 // @ts-ignore
-import { GameClientDriver } from "sc-game-service-integration-utils";
+import { eventTypes, GameClientDriver } from "sc-game-service-integration-utils";
 
 import { initUserSession } from "./helpers";
 import { socketOptions } from "./stubs/test-data";
@@ -12,6 +12,8 @@ describe("event place bet", () => {
 
     beforeAll(async () => {
         jest.setTimeout(JEST_ASSERT_WAITING_RESPONSE_TIMEOUT);
+        userClientDriver = new GameClientDriver(socketOptions, initUserSession(placeBetUser));
+        await userClientDriver.handleSignedInEvent();
     });
 
     afterAll(() => {
@@ -20,9 +22,9 @@ describe("event place bet", () => {
         }
     });
 
-    it("should be able to connect for placing bet", async () => {
-        userClientDriver = new GameClientDriver(socketOptions, initUserSession(placeBetUser));
-        await userClientDriver.handleSignedInEvent();
-        expect(userClientDriver).toBeDefined();
+    it("should be able to place bet", async () => {
+        userClientDriver.emit(eventTypes.bet, { betLevel: 1, coinValue: 0.1 });
+        const result = await userClientDriver.handleGameEvent((data) => data.finish);
+        expect(result).toBeDefined();
     });
 });

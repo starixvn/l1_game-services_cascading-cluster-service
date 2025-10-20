@@ -1,11 +1,4 @@
-import { currencyData } from "../stubs/test-data";
+import { buildResult } from "./build-result";
+import { initUserSession } from "./init-user-session";
 
-export function initUserSession(user: any) {
-    return {
-        session: `${user.playerId}-session-id`,
-        ss: `${user.playerId}-session-id`,
-        currency: currencyData.name,
-        username: `${user.playerId}_${user.playerName}`,
-        browserUserAgent: "browser-user-agent",
-    };
-}
+export { buildResult, initUserSession };
