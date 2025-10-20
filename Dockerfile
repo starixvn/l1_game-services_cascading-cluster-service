@@ -6,9 +6,11 @@ RUN mkdir -p /app && chown -R node:node /app
 WORKDIR /app
 USER node
 COPY --chown=node:node package.json yarn.lock tsconfig.json .modprunerrc ./
+
+# Install only production dependencies + TypeScript (skip test dependencies like @swc)
 RUN npm run reg && \
-    yarn install --frozen-lockfile --production=false --ignore-optional && \
-    yarn remove @swc/core @swc/jest || true && \
+    yarn install --frozen-lockfile --production && \
+    yarn add typescript@^5.9.2 --dev && \
     npx mod-pruner prune --force
 COPY --chown=node:node ./src/ ./src/
 RUN npm run build
