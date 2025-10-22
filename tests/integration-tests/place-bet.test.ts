@@ -26,5 +26,12 @@ describe("event place bet", () => {
         userClientDriver.emit(eventTypes.bet, { betLevel: 1, coinValue: 0.1 });
         const result = await userClientDriver.handleGameEvent((data) => data.finish);
         expect(result).toBeDefined();
+        expect(result.finish.freeSpins).toBe(0);
+    });
+
+    it("should be able to buy free spin", async () => {
+        userClientDriver.emit(eventTypes.bet, { betLevel: 1, coinValue: 0.1, buyFreeSpin: 1 });
+        const result = await userClientDriver.handleGameEvent((data) => data.finish);
+        expect(result.finish.freeSpins).toBeGreaterThan(0);
     });
 });
