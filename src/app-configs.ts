@@ -1,77 +1,53 @@
-import type { AppConfig } from "./types/index";
+import internalAppConfigs from "./internal-configs/app-configs";
+import shareAppConfigs from "./share-configs/app-configs";
 
-const appConfigs: AppConfig = {
-    hostingPort: 5000,
-    apiSettings: {
-        enabledApi: true,
-        apiUrl: "https://l2-proxy2.lumigame.com/game-api",
-        authUrl: "https://l2-auth2.lumigame.com/",
-        client: {
-            id: "game-server",
-            secret: "gameserver@20luminet&",
-        },
+function flattenObject(obj: any, prefix = "", res = {}): Record<string, any> {
+    for (const key in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj, key)) {
+            const newKey = prefix ? `${prefix}||${key}` : key;
+            const value = obj[key];
 
-        useAuthenticate: true,
-        requestTimeout: 10000,
-        placeBetTimeout: 4000,
-        hitJackpotTimeout: 200000,
-        enabledApiLogs: true,
-    },
-    authenticateSettings: {
-        url: "https://l2-auth2.lumigame.com/",
-        id: "game-services",
-        secret: "gameservices@20luminet&",
-        requestTimeout: 10000,
-        useAuthenticate: true,
-        audiences: ["api", "admin-api"],
-    },
-    userServiceSettings: {
-        url: "https://l2-proxy2.lumigame.com/user",
-    },
-    notificationServiceSettings: {
-        url: "https://l2-proxy2.lumigame.com/notification/api",
-    },
-    socketOptions: {
-        pingInterval: 60 * 1000,
-        pingTimeout: 60 * 1000,
-        transports: ["websocket"],
-        allowUpgrades: false,
-        perMessageDeflate: false,
-    },
-    enabledLogs: true,
-    database: {
-        url: "mongodb://localhost:27018/",
-        options: {
-            dbName: "minigame",
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        },
-    },
-    sentry: {
-        sentryUrl: "https://8eb9632f2663e57c838ec83febbee14f@sentry-k8s.lumigame.com/4",
-        logIdentifier: "cascading-cluster",
-        env: "LOCAL_2",
-    },
-    adminSecretKey: "asWDEerfOIdgsdqRTFabvmgh",
-    freeSpinLiveSeconds: 30, // 1 day
-    bonusLiveSeconds: 125,
-    jackpotLiveSeconds: 63,
-    otel: {
-        system: "VG",
-        enabled: true,
-        endpoint: "http://10.10.50.69:4318/v1/traces",
-    },
-    gameManagementApiSettings: {
-        BASE: "https://l2-proxy2.lumigame.com/game-management-service",
-    },
-    promotionApiSettings: {
-        baseUrl: "https://l2-proxy2.lumigame.com/game-promotion-api/",
-        timeout: 5000,
-        useAuthentication: false,
-    },
-    trackingApiSettings: {
-        baseUrl: "https://l2-proxy2.lumigame.com/user-tracking-api",
-    },
-};
+            if (typeof value === "object" && value !== null && !Array.isArray(value)) {
+                flattenObject(value, newKey, res);
+            } else {
+                res[newKey] = value;
+            }
+        }
+    }
+    return res;
+}
+
+function unflattenObject(flatObject = {}): any {
+    const result: any = {};
+
+    for (const key in flatObject) {
+        if (Object.prototype.hasOwnProperty.call(flatObject, key)) {
+            const value = flatObject[key];
+            const parts = key.split("||");
+
+            let current = result;
+            for (let i = 0; i < parts.length - 1; i++) {
+                const part = parts[i];
+                if (!current[part] || typeof current[part] !== "object") {
+                    current[part] = {};
+                }
+                current = current[part];
+            }
+
+            const finalPart = parts[parts.length - 1];
+            current[finalPart] = value;
+        }
+    }
+
+    return result;
+}
+
+const flattenedShareConfigs = flattenObject(shareAppConfigs);
+const flattenedInternalAppConfigs = flattenObject(internalAppConfigs);
+
+const appConfigs = unflattenObject({
+    ...flattenedShareConfigs,
+    ...flattenedInternalAppConfigs,
+});
 
 export default appConfigs;
