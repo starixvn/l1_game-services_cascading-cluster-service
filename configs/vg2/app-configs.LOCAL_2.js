@@ -19,14 +19,6 @@ export default {
         perMessageDeflate: false,
     },
     enabledLogs: true,
-    database: {
-        url: "mongodb://lmn_backend:LmnBackend@10.10.50.12:39202,10.10.50.13:39202,10.10.50.14:39202/?replicaSet=L2ppLocal",
-        options: {
-            dbName: "minigame",
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        },
-    },
     sentry: {
         sentryUrl: "https://8eb9632f2663e57c838ec83febbee14f@sentry-k8s.lumigame.com/4",
         logIdentifier: "three-cards",
